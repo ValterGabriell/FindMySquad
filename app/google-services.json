@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "426722752514",
+    "project_id": "findmysquad-3f742",
+    "storage_bucket": "findmysquad-3f742.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:426722752514:android:62639883d5f9f0cce94f1b",
+        "android_client_info": {
+          "package_name": "com.example.findmysquad"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "426722752514-vud5jp5hiukho1jcih6s7ga77sk47611.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASGUEK40Zk611ky9uGKBHIkMNcu5lmPs0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "426722752514-vud5jp5hiukho1jcih6s7ga77sk47611.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
