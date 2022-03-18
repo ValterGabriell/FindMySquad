@@ -1,5 +1,6 @@
 package com.example.findmysquad.View
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -23,6 +24,10 @@ class LogarActivity : AppCompatActivity() {
 
         binding.btnLogar.setOnClickListener {
             logar()
+        }
+
+        binding.txtNaoTemConta.setOnClickListener {
+            startActivity(Intent(this, CadastrarActivity::class.java))
         }
     }
 
