@@ -1,10 +1,10 @@
 package com.example.findmysquad.ViewModel
 
-
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
+import com.example.findmysquad.Model.Texts
 import com.example.findmysquad.View.TelaPrincipalActivity
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuth
@@ -12,25 +12,24 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 
-class MainViewModel : ViewModel() {
-
+class LogarViewModel : ViewModel() {
     private val auth = FirebaseAuth.getInstance()
 
-    suspend fun cadastrarUsuario(email: String, senha: String, context: Context) {
-        auth.createUserWithEmailAndPassword(email, senha).addOnCompleteListener {
-            println("Debug: -> Cadastro criado com sucesso")
+    suspend fun logarUsuário(email:String, senha:String, context: Context){
+        auth.signInWithEmailAndPassword(email, senha).addOnSuccessListener {
             changeActivity(context)
         }.addOnFailureListener { erro ->
             val msgErro = when (erro) {
-                is FirebaseAuthWeakPasswordException -> "Digite uma senha de no minimo 6 caracteres"
-                is FirebaseAuthUserCollisionException -> "Essa conta ja foi criada"
-                is FirebaseAuthInvalidCredentialsException -> "Digite um email valido"
-                is FirebaseNetworkException -> "Sem conexao"
+                is FirebaseAuthWeakPasswordException -> Texts.SENHA_INVALIDA
+                is FirebaseAuthUserCollisionException -> Texts.CONTA_CRIADA
+                is FirebaseAuthInvalidCredentialsException -> Texts.EMAIL_INVALIDO
+                is FirebaseNetworkException -> Texts.SEM_CONEXAO
                 else -> "ERRO"
             }
-            println("Debug: ->$msgErro")
+            Toast.makeText(context, msgErro, Toast.LENGTH_SHORT).show()
         }
     }
+
 
     private fun changeActivity(context: Context) {
         val intent = Intent(context, TelaPrincipalActivity::class.java)
@@ -40,6 +39,7 @@ class MainViewModel : ViewModel() {
     suspend fun makeAToast(context: Context, text: String, time: Int) {
         Toast.makeText(context, text, time).show()
     }
+
 
 
 }

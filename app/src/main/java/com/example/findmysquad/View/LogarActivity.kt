@@ -5,43 +5,42 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.findmysquad.R
-import com.example.findmysquad.ViewModel.MainViewModel
-import com.example.findmysquad.databinding.ActivityMainBinding
+import com.example.findmysquad.ViewModel.LogarViewModel
+import com.example.findmysquad.databinding.ActivityLogarBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.DisposableHandle
 import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity() {
+class LogarActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
-    private val model: MainViewModel by viewModels()
-
+    private lateinit var binding: ActivityLogarBinding
+    private val model: LogarViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityLogarBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.btnLogar.setOnClickListener {
-            cadastrarUsuário()
+            logar()
         }
-
-
     }
 
 
-    private fun cadastrarUsuário() {
+    private fun logar() {
         val email = binding.etEmail.text.toString()
         val senha = binding.etSenha.text.toString()
 
-        if (email.isNotEmpty() || senha.isNotEmpty()) {
+        if (email.isNotEmpty() && senha.isNotEmpty()) {
             CoroutineScope(Dispatchers.IO).launch {
-                model.cadastrarUsuario(email, senha, this@MainActivity)
+                model.logarUsuário(email, senha, this@LogarActivity)
             }
         } else {
-            CoroutineScope(Dispatchers.IO).launch {
-                model.makeAToast(this@MainActivity, "Preencha todos os campos", Toast.LENGTH_SHORT)
+            CoroutineScope(Dispatchers.Main).launch {
+                model.makeAToast(this@LogarActivity, "Preencha todos os campos", Toast.LENGTH_SHORT)
             }
         }
     }
+
+
 }
