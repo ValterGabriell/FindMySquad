@@ -7,10 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.findmysquad.Model.Texts
 import com.example.findmysquad.View.TelaPrincipalActivity
 import com.google.firebase.FirebaseNetworkException
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.FirebaseAuthUserCollisionException
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException
+import com.google.firebase.auth.*
 
 class LogarViewModel : ViewModel() {
     private val auth = FirebaseAuth.getInstance()
@@ -38,6 +35,10 @@ class LogarViewModel : ViewModel() {
 
     suspend fun makeAToast(context: Context, text: String, time: Int) {
         Toast.makeText(context, text, time).show()
+    }
+
+    fun getCurrentUser() : FirebaseUser?{
+        return auth.currentUser
     }
 
 

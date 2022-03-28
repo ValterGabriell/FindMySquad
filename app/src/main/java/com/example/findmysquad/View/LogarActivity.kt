@@ -22,6 +22,8 @@ class LogarActivity : AppCompatActivity() {
         binding = ActivityLogarBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
         binding.btnLogar.setOnClickListener {
             logar()
         }
@@ -44,6 +46,14 @@ class LogarActivity : AppCompatActivity() {
             CoroutineScope(Dispatchers.Main).launch {
                 model.makeAToast(this@LogarActivity, "Preencha todos os campos", Toast.LENGTH_SHORT)
             }
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val currentUser = model.getCurrentUser()
+        if (currentUser != null){
+            startActivity(Intent(this, TelaPrincipalActivity::class.java))
         }
     }
 
