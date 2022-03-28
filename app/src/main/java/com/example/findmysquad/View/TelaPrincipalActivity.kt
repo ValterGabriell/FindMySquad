@@ -32,6 +32,7 @@ class TelaPrincipalActivity : AppCompatActivity() {
 
             CoroutineScope(Dispatchers.IO).launch {
                 model.createAProfileData(listaGames)
+                model.createGamesData()
             }
         }
 
