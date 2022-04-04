@@ -6,6 +6,7 @@ import android.content.Intent
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import com.example.findmysquad.Model.Texts
+import com.example.findmysquad.View.ConfigActivity
 import com.example.findmysquad.View.TelaPrincipalActivity
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuth
@@ -33,7 +34,7 @@ class CadastrarViewModel : ViewModel() {
     }
 
     private fun changeActivity(context: Context) {
-        val intent = Intent(context, TelaPrincipalActivity::class.java)
+        val intent = Intent(context, ConfigActivity::class.java)
         context.startActivity(intent)
     }
 

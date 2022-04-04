@@ -49,13 +49,4 @@ class LogarActivity : AppCompatActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        val currentUser = model.getCurrentUser()
-        if (currentUser != null){
-            startActivity(Intent(this, TelaPrincipalActivity::class.java))
-        }
-    }
-
-
 }

@@ -22,17 +22,8 @@ class TelaPrincipalActivity : AppCompatActivity() {
 
         binding.btnConfirmar.setOnClickListener {
 
-            val r6 = binding.checkr6.text.toString()
-            val cs = binding.checckCS.text.toString()
-            val vava = binding.checkvava.text.toString()
-
-            val listaGames = listOf(
-                r6, cs, vava
-            )
-
             CoroutineScope(Dispatchers.IO).launch {
-                model.createAProfileData(listaGames)
-                model.createGamesData()
+                model.createGamesData(this@TelaPrincipalActivity)
             }
         }
 

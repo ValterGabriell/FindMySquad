@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="gamesArray">
+        <item>Rainbow Six Siege</item>
+        <item>Counter Strike</item>
+        <item>Dota</item>
+        <item>Valorant</item>
+    </string-array>
+
+    <string-array name="qtdPlayers">
+        <item>5</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string-array name="Plataformas">
+        <item>PC, Xbox, Playstation</item>
+        <item>PC</item>
+        <item>PC</item>
+        <item>PC</item>
+    </string-array>
+
+
+</resources>
