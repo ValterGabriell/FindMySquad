@@ -3,104 +3,52 @@ package com.example.findmysquad.View
 import android.annotation.SuppressLint
 import android.app.TimePickerDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.findmysquad.R
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import com.example.findmysquad.ViewModel.ConfigViewModel
 import com.example.findmysquad.databinding.ActivityConfigBinding
-import com.example.findmysquad.databinding.ActivityMainBinding
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.collection.LLRBEmptyNode
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class ConfigActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityConfigBinding
-    private val auth = FirebaseAuth.getInstance()
-    private val db = FirebaseFirestore.getInstance()
+    private val model : ConfigViewModel by viewModels()
 
+
+    @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityConfigBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        finalizarCadastro()
-
-    }
-
-    private fun finalizarCadastro() {
-        binding.btnConfirm.setOnClickListener {
-            verificarForm()
-        }
-    }
-
-    private fun verificarForm() {
-        val nickname: String = binding.etNick.text.toString()
-
-        getRadioNames()
-        configHorario()
-        getPlataromas()
 
 
-        val profileMap = hashMapOf(
-            "nickname" to nickname,
-            "jogos" to getRadioNames(),
-            "plataformas" to getPlataromas(),
-            "horario" to configHorario()
-
-        )
-
-        db.collection("User").document(auth.currentUser?.uid.toString()).set(profileMap)
-        startActivity(Intent(this, TelaPrincipalActivity::class.java))
-
-    }
-
-
-    private fun getPlataromas() : List<String>{
-        val listaPlata = mutableListOf<String>()
-
-        if (binding.radioPC.isChecked) {
-            listaPlata.add(binding.radioPC.text.toString())
-        } else if (binding.radioPS.isChecked) {
-            listaPlata.add((binding.radioPS.text.toString()))
-        } else if (binding.radioXBOX.isChecked) {
-            listaPlata.add(binding.radioXBOX.text.toString())
-        }
-
-        return listaPlata
-    }
-
-    private fun configHorario() : String {
-        val calendar = Calendar.getInstance()
         binding.btnClock.setOnClickListener {
-            val timePickerDialog = TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
-                calendar.set(Calendar.MINUTE, minute)
-                binding.btnClock.text = SimpleDateFormat("HH:mm").format(calendar.time)
+            CoroutineScope(Dispatchers.Main).launch {
+                model.configTimerPicker(this@ConfigActivity)
             }
-            TimePickerDialog(
-                this,
-                timePickerDialog,
-                calendar.get(Calendar.HOUR_OF_DAY),
-                calendar.get(Calendar.MINUTE),
-                true
-            ).show()
         }
 
-        return SimpleDateFormat("HH:mm").format(calendar.time)
+        binding.btnConfirm.setOnClickListener {
+                CoroutineScope(Dispatchers.Main).launch {
+                    model.validateForm(binding.etNick, binding.chipGroup, binding.chipGroup2, this@ConfigActivity)
+                }
+        }
 
     }
 
-    private fun getRadioNames()  : List<String>{
-        val lista = mutableListOf<String>()
+    override fun onBackPressed() {
 
-      binding.chipGroup.setOnCheckedChangeListener { group, checkedId ->
-          when(checkedId){
-
-          }
-      }
-
-        return lista
     }
-
 }

@@ -14,6 +14,7 @@ class TelaPrincipalActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityTelaPrincipalBinding
     private val model : TelaPrincipalViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTelaPrincipalBinding.inflate(layoutInflater)
@@ -21,12 +22,14 @@ class TelaPrincipalActivity : AppCompatActivity() {
 
 
         binding.btnConfirmar.setOnClickListener {
-
-            CoroutineScope(Dispatchers.IO).launch {
-                model.createGamesData(this@TelaPrincipalActivity)
+            CoroutineScope(Dispatchers.Default).launch {
+                model.signOut(this@TelaPrincipalActivity)
             }
         }
 
+
+    }
+    override fun onBackPressed() {
 
     }
 }

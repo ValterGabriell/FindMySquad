@@ -17,12 +17,14 @@ class LogarActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLogarBinding
     private val model: LogarViewModel by viewModels()
+
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLogarBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
 
         binding.btnLogar.setOnClickListener {
             logar()
@@ -32,7 +34,6 @@ class LogarActivity : AppCompatActivity() {
             startActivity(Intent(this, CadastrarActivity::class.java))
         }
     }
-
 
     private fun logar() {
         val email = binding.etEmail.text.toString()
@@ -48,5 +49,16 @@ class LogarActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onStart() {
+        super.onStart()
+        model.onStart(this)
+    }
+
+    override fun onBackPressed() {
+
+    }
+
+
 
 }

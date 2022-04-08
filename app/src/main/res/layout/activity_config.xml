@@ -11,17 +11,6 @@
     tools:context=".View.ConfigActivity">
 
 
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Editar Perfil"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/etNick"
         android:layout_width="0dp"
@@ -33,6 +22,7 @@
         android:hint="Nicknane"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        android:textColorHint="@color/purple_500"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,15 +30,15 @@
 
     <ImageView
         android:id="@+id/img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/common_google_signin_btn_icon_light" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/profile" />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGroup"
@@ -64,20 +54,24 @@
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipR6"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rainbow Six" />
+            android:text="Rainbow Six"
+            app:rippleColor="@color/lilasZin" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipCS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:text="Counter Strike" />
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipVaralotn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
             android:text="Valorant" />
     </com.google.android.material.chip.ChipGroup>
 
@@ -91,47 +85,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
 
-    <RadioButton
-        android:id="@+id/radioPC"
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroup2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:text="PC"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnClock" />
+        app:layout_constraintTop_toBottomOf="@+id/btnClock">
 
-    <RadioButton
-        android:id="@+id/radioPS"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Playstation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioPC" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipPC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:text="PC" />
 
-    <RadioButton
-        android:id="@+id/radioXBOX"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Xbox"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioPS" />
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chiPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:text="Playstation" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipXbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:text="Xbox" />
+    </com.google.android.material.chip.ChipGroup>
 
     <Button
         android:id="@+id/btnConfirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Submmit"
+        android:layout_marginTop="32dp"
+        android:text="Confirmar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioXBOX" />
+        app:layout_constraintTop_toBottomOf="@+id/chipGroup2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

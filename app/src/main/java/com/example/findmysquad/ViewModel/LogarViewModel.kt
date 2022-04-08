@@ -37,8 +37,10 @@ class LogarViewModel : ViewModel() {
         Toast.makeText(context, text, time).show()
     }
 
-    fun getCurrentUser() : FirebaseUser?{
-        return auth.currentUser
+    fun onStart(context: Context){
+        if (auth.currentUser != null){
+            context.startActivity(Intent(context, TelaPrincipalActivity::class.java))
+        }
     }
 
 

@@ -1,8 +1,10 @@
 package com.example.findmysquad.ViewModel
 
 import android.content.Context
+import android.content.Intent
 import androidx.lifecycle.ViewModel
 import com.example.findmysquad.R
+import com.example.findmysquad.View.LogarActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
@@ -11,25 +13,12 @@ import kotlin.collections.HashMap as HashMap1
 class TelaPrincipalViewModel : ViewModel() {
 
     private val db = FirebaseFirestore.getInstance()
+    private val auth = FirebaseAuth.getInstance()
 
-    suspend fun createGamesData(context: Context) {
-        val array = context.resources.getStringArray(R.array.gamesArray)
-        val qtdPlayres = context.resources.getStringArray(R.array.qtdPlayers)
-        val plataforma = context.resources.getStringArray(R.array.Plataformas)
-
-        for ( i in array.indices){
-            for (x in qtdPlayres.indices) {
-                for (y in plataforma.indices) {
-                    val profile = hashMapOf(
-                        "Titulo" to array[i],
-                        "Quantidade de players" to qtdPlayres[x],
-                        "Plataformas" to plataforma[y]
-                    )
-                    db.collection("Games").document(array[i]).set(profile)
-                }
-            }
-        }
-
+    suspend fun signOut(context: Context){
+        auth.signOut()
+        context.startActivity(Intent(context, LogarActivity::class.java))
     }
+
 
 }
