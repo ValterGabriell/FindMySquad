@@ -18,18 +18,20 @@ class AddViewModel : ViewModel() {
      * Metodo para adicionar uma nova requisicao
      */
     fun addNewRequisicao(chipGroup: ChipGroup, chipGroup2: ChipGroup) {
-
-
         val data = hashMapOf(
             "Jogo" to filterChip(chipGroup),
             "Horário" to timerDate,
             "User" to auth.currentUser?.uid,
             "Plataforma" to filterChip(chipGroup2)
         )
+        salvar(data)
 
+
+    }
+
+    private fun salvar(data: HashMap<String, Any?>) {
         db.collection(NamesDB.REQUISICAO_NAME).document(auth.currentUser?.uid.toString())
-            .collection("Requisições de: ${auth.currentUser?.uid}")
-            .document(createIdRequisition(auth)).set(data)
+            .collection("Requisições").add(data)
     }
 
 
@@ -37,14 +39,11 @@ class AddViewModel : ViewModel() {
         timerDate = Methods.configTimerPicker(context)
     }
 
-    private fun createIdRequisition(auth: FirebaseAuth): String {
-        val name = auth.currentUser?.uid
-        return "$name-${auth.firebaseAuthSettings.hashCode()}"
-    }
-
     private fun filterChip(chipGroup: ChipGroup): MutableList<Int> {
         return chipGroup.checkedChipIds
     }
+
+
 
 
 }
