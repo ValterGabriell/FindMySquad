@@ -35,7 +35,7 @@ class TelaPrincipalActivity : AppCompatActivity() {
 
     private fun btnFab(){
         binding.fabMain.setOnClickListener {
-
+            startActivity(Intent(this, AddNewRequisicao::class.java))
         }
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

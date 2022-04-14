@@ -76,7 +76,7 @@
     </com.google.android.material.chip.ChipGroup>
 
     <Button
-        android:id="@+id/btnClock"
+        android:id="@+id/btnHor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -92,7 +92,7 @@
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnClock">
+        app:layout_constraintTop_toBottomOf="@+id/btnHor">
 
         <com.google.android.material.chip.Chip
             android:id="@+id/chipPC"

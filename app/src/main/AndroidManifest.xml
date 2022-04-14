@@ -10,11 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FindMySquad">
         <activity
+            android:name=".View.AddNewRequisicao"
+            android:exported="false" />
+        <activity
             android:name=".View.ConfigActivity"
-            android:exported="true">
-        </activity>
-
-
+            android:exported="true"></activity>
         <activity
             android:name=".View.LogarActivity"
             android:exported="true">
@@ -29,9 +29,7 @@
             android:exported="false" />
         <activity
             android:name=".View.CadastrarActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>

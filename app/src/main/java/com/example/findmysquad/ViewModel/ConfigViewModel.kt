@@ -7,6 +7,7 @@ import android.content.Intent
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
+import com.example.findmysquad.Model.Methods
 import com.example.findmysquad.View.TelaPrincipalActivity
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.FirebaseAuth
@@ -22,32 +23,17 @@ class ConfigViewModel : ViewModel() {
     private var timerDate: String = ""
     private var nickname: String = ""
 
-    @SuppressLint("SimpleDateFormat")
-    suspend fun configTimerPicker(context: Context): String {
-        val calendar = Calendar.getInstance()
-        val timePickerDialog = TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
-            calendar.set(Calendar.MINUTE, minute)
-            timerDate = SimpleDateFormat("HH:mm").format(calendar.time)
-        }
-        TimePickerDialog(
-            context,
-            timePickerDialog,
-            calendar.get(Calendar.HOUR_OF_DAY),
-            calendar.get(Calendar.MINUTE),
-            true
-        ).show()
-        return timerDate
-    }
-
     private fun getNickname(et: EditText): String {
         nickname = et.text.toString()
         return nickname
     }
 
-
     private fun filterChip(chipGroup: ChipGroup): MutableList<Int> {
         return chipGroup.checkedChipIds
+    }
+
+    fun clock(context: Context) {
+        timerDate = Methods.configTimerPicker(context)
     }
 
     suspend fun validateForm(

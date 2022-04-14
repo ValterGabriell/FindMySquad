@@ -25,8 +25,6 @@ class ConfigActivity : AppCompatActivity() {
     private lateinit var binding: ActivityConfigBinding
     private val model : ConfigViewModel by viewModels()
 
-
-    @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityConfigBinding.inflate(layoutInflater)
@@ -34,9 +32,9 @@ class ConfigActivity : AppCompatActivity() {
 
 
 
-        binding.btnClock.setOnClickListener {
+        binding.btnHor.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
-                model.configTimerPicker(this@ConfigActivity)
+                model.clock(this@ConfigActivity)
             }
         }
 
