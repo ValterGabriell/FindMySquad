@@ -1,0 +1,24 @@
+package com.example.findmysquad.DI
+
+import com.example.findmysquad.Repository.AddRepostiory.AddRepository
+import com.example.findmysquad.Repository.CadastrarRepository.CadastrarRepository
+import com.example.findmysquad.Repository.ConfigRepository.ConfigRepository
+import com.example.findmysquad.ViewModel.AddViewModel
+import com.example.findmysquad.ViewModel.CadastrarViewModel
+import com.example.findmysquad.ViewModel.ConfigViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.module
+
+
+val appModule = module {
+    single{ CadastrarRepository() }
+    single { AddRepository() }
+    single { ConfigRepository() }
+}
+
+
+val viewModelModule = module {
+    viewModel { CadastrarViewModel(get()) }
+    viewModel { ConfigViewModel(get()) }
+    viewModel { AddViewModel(get()) }
+}

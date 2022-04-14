@@ -16,6 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -23,7 +24,7 @@ import kotlin.collections.ArrayList
 class ConfigActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityConfigBinding
-    private val model : ConfigViewModel by viewModels()
+    private val model by inject<ConfigViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,9 +40,14 @@ class ConfigActivity : AppCompatActivity() {
         }
 
         binding.btnConfirm.setOnClickListener {
-                CoroutineScope(Dispatchers.Main).launch {
-                    model.validateForm(binding.etNick, binding.chipGroup, binding.chipGroup2, this@ConfigActivity)
-                }
+            CoroutineScope(Dispatchers.Main).launch {
+                model.validateForm(
+                    binding.etNick,
+                    binding.chipGroup,
+                    binding.chipGroup2,
+                    this@ConfigActivity
+                )
+            }
         }
 
     }

@@ -9,11 +9,12 @@ import com.example.findmysquad.databinding.ActivityAddNewRequisicaoBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 
 class AddNewRequisicao : AppCompatActivity() {
 
     private lateinit var binding : ActivityAddNewRequisicaoBinding
-    private val model : AddViewModel by viewModels()
+    private val model by inject<AddViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

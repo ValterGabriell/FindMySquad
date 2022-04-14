@@ -19,8 +19,6 @@ class LogarActivity : AppCompatActivity() {
     private val model: LogarViewModel by viewModels()
 
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLogarBinding.inflate(layoutInflater)

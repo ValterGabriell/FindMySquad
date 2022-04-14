@@ -5,5 +5,6 @@ object Texts {
     const val CONTA_CRIADA = "Essa conta ja foi criada"
     const val EMAIL_INVALIDO = "Digite um email valido"
     const val SEM_CONEXAO = "Sem conexao"
+    const val REQUISICAO_NAME = "Requisições"
 
 }

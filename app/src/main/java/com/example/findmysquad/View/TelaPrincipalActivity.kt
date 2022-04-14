@@ -26,11 +26,7 @@ class TelaPrincipalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTelaPrincipalBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         btnFab()
-
-
-
     }
 
     private fun btnFab(){
@@ -38,7 +34,9 @@ class TelaPrincipalActivity : AppCompatActivity() {
             startActivity(Intent(this, AddNewRequisicao::class.java))
         }
     }
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return super.onCreateOptionsMenu(menu)
     }
