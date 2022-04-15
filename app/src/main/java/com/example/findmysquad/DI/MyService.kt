@@ -3,17 +3,19 @@ package com.example.findmysquad.DI
 import com.example.findmysquad.Repository.AddRepostiory.AddRepository
 import com.example.findmysquad.Repository.CadastrarRepository.CadastrarRepository
 import com.example.findmysquad.Repository.ConfigRepository.ConfigRepository
-import com.example.findmysquad.ViewModel.AddViewModel
-import com.example.findmysquad.ViewModel.CadastrarViewModel
-import com.example.findmysquad.ViewModel.ConfigViewModel
+import com.example.findmysquad.Repository.LogarRepository.LogarRepository
+import com.example.findmysquad.Repository.TelaPrincipalRepository.TelaPrincipalRepository
+import com.example.findmysquad.ViewModel.*
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 
 val appModule = module {
-    single{ CadastrarRepository() }
+    single { CadastrarRepository() }
     single { AddRepository() }
     single { ConfigRepository() }
+    single { LogarRepository() }
+    single { TelaPrincipalRepository() }
 }
 
 
@@ -21,4 +23,6 @@ val viewModelModule = module {
     viewModel { CadastrarViewModel(get()) }
     viewModel { ConfigViewModel(get()) }
     viewModel { AddViewModel(get()) }
+    viewModel { LogarViewModel(get()) }
+    viewModel { TelaPrincipalViewModel(get()) }
 }

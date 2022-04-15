@@ -14,11 +14,13 @@ import com.example.findmysquad.databinding.ActivityTelaPrincipalBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 
 class TelaPrincipalActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityTelaPrincipalBinding
-    private val model : TelaPrincipalViewModel by viewModels()
+    private val model by inject<TelaPrincipalViewModel>()
+
     private val listaRequisicoes = ArrayList<ModelRequisicoes>()
     private lateinit var adapter : RecyclerMainAdapter
 

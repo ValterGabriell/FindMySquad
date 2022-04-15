@@ -1,22 +1,20 @@
 package com.example.findmysquad.View
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.viewModels
-import com.example.findmysquad.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.findmysquad.ViewModel.LogarViewModel
 import com.example.findmysquad.databinding.ActivityLogarBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.DisposableHandle
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 
 class LogarActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLogarBinding
-    private val model: LogarViewModel by viewModels()
+    private val model by inject<LogarViewModel>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
