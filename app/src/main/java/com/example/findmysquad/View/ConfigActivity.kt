@@ -4,7 +4,9 @@ import android.annotation.SuppressLint
 import android.app.TimePickerDialog
 import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.findmysquad.ViewModel.ConfigViewModel
@@ -25,6 +27,13 @@ class ConfigActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityConfigBinding
     private val model by inject<ConfigViewModel>()
+    private val register = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) {
+        it?.let {
+            binding.img.setImageURI(it)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,13 +48,22 @@ class ConfigActivity : AppCompatActivity() {
             }
         }
 
+        /**
+         * Método para recuperar a imagem
+         * */
+
+        binding.img.setOnClickListener {
+            register.launch("image/*")
+        }
+
         binding.btnConfirm.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
                 model.validateForm(
                     binding.etNick,
                     binding.chipGroup,
                     binding.chipGroup2,
-                    this@ConfigActivity
+                    this@ConfigActivity,
+                    binding.img
                 )
             }
         }

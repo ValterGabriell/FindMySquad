@@ -2,6 +2,7 @@ package com.example.findmysquad.ViewModel
 
 import android.content.Context
 import android.widget.EditText
+import android.widget.ImageView
 import androidx.lifecycle.ViewModel
 import com.example.findmysquad.Repository.ConfigRepository.ConfigRepository
 import com.google.android.material.chip.ChipGroup
@@ -12,9 +13,10 @@ class ConfigViewModel(private val configRepository: ConfigRepository) : ViewMode
         et: EditText,
         chipGroup: ChipGroup,
         chipGroup2: ChipGroup,
-        context: Context
+        context: Context,
+        img:ImageView
     ) {
-        configRepository.validateForm(et, chipGroup, chipGroup2, context)
+        configRepository.validateForm(et, chipGroup, chipGroup2, context,img)
     }
 
     suspend fun clock(context: Context){

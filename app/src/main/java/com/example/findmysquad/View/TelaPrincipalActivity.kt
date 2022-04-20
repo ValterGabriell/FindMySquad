@@ -18,11 +18,11 @@ import org.koin.android.ext.android.inject
 
 class TelaPrincipalActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityTelaPrincipalBinding
+    private lateinit var binding: ActivityTelaPrincipalBinding
     private val model by inject<TelaPrincipalViewModel>()
 
     private val listaRequisicoes = ArrayList<ModelRequisicoes>()
-    private lateinit var adapter : RecyclerMainAdapter
+    private lateinit var adapter: RecyclerMainAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +31,7 @@ class TelaPrincipalActivity : AppCompatActivity() {
         btnFab()
     }
 
-    private fun btnFab(){
+    private fun btnFab() {
         binding.fabMain.setOnClickListener {
             startActivity(Intent(this, AddNewRequisicao::class.java))
         }
@@ -44,12 +44,12 @@ class TelaPrincipalActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
+        when (item.itemId) {
             R.id.id_profile -> {
-
+                startActivity(Intent(this, ConfigActivity::class.java))
             }
 
-            R.id.id_logout ->{
+            R.id.id_logout -> {
                 CoroutineScope(Dispatchers.Default).launch {
                     model.signOut(this@TelaPrincipalActivity)
                     startActivity(Intent(this@TelaPrincipalActivity, LogarActivity::class.java))
@@ -58,7 +58,6 @@ class TelaPrincipalActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
 
 
     override fun onBackPressed() {

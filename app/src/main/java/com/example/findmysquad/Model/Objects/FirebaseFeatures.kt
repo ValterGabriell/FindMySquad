@@ -1,7 +1,8 @@
-package com.example.findmysquad.Model
+package com.example.findmysquad.Model.Objects
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 
 object FirebaseFeatures {
 
@@ -11,6 +12,10 @@ object FirebaseFeatures {
 
     fun getDatabase() : FirebaseFirestore{
         return FirebaseFirestore.getInstance()
+    }
+
+    fun getStorage() : FirebaseStorage{
+        return FirebaseStorage.getInstance()
     }
 
 }

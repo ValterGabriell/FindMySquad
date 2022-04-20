@@ -3,8 +3,8 @@ package com.example.findmysquad.Repository.CadastrarRepository
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
-import com.example.findmysquad.Model.FirebaseFeatures
-import com.example.findmysquad.Model.Texts
+import com.example.findmysquad.Model.Objects.FirebaseFeatures
+import com.example.findmysquad.Model.Objects.Texts
 import com.example.findmysquad.View.ConfigActivity
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException

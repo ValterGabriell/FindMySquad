@@ -1,9 +1,9 @@
 package com.example.findmysquad.Repository.AddRepostiory
 
 import android.content.Context
-import com.example.findmysquad.Model.FirebaseFeatures
-import com.example.findmysquad.Model.Methods
-import com.example.findmysquad.Model.Texts
+import com.example.findmysquad.Model.Objects.FirebaseFeatures
+import com.example.findmysquad.Model.Objects.Methods
+import com.example.findmysquad.Model.Objects.Texts
 import com.google.android.material.chip.ChipGroup
 
 class AddRepository {

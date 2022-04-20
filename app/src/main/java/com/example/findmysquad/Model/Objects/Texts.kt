@@ -1,4 +1,4 @@
-package com.example.findmysquad.Model
+package com.example.findmysquad.Model.Objects
 
 object Texts {
     const val SENHA_INVALIDA = "Digite uma senha de no minimo 6 caracteres"

@@ -1,8 +1,10 @@
-package com.example.findmysquad.Model
+package com.example.findmysquad.Model.Objects
 
 import android.annotation.SuppressLint
 import android.app.TimePickerDialog
 import android.content.Context
+import android.net.Uri
+import androidx.activity.result.contract.ActivityResultContracts
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -23,4 +25,6 @@ object Methods {
         ).show()
         return SimpleDateFormat("HH:mm").format(calendar.time)
     }
+
+
 }

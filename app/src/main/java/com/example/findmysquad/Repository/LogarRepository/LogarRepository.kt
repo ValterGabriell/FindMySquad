@@ -3,7 +3,7 @@ package com.example.findmysquad.Repository.LogarRepository
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
-import com.example.findmysquad.Model.FirebaseFeatures
+import com.example.findmysquad.Model.Objects.FirebaseFeatures
 import com.example.findmysquad.View.TelaPrincipalActivity
 
 class LogarRepository : ILogarRepository {

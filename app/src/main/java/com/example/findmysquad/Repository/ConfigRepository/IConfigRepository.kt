@@ -2,7 +2,7 @@ package com.example.findmysquad.Repository.ConfigRepository
 
 import android.content.Context
 import android.widget.EditText
-import com.example.findmysquad.Model.Methods
+import android.widget.ImageView
 import com.google.android.material.chip.ChipGroup
 
 interface IConfigRepository {
@@ -10,8 +10,8 @@ interface IConfigRepository {
         et: EditText,
         chipGroup: ChipGroup,
         chipGroup2: ChipGroup,
-        context
-        : Context
+        context: Context,
+        img:ImageView
     )
 
     fun clock(context: Context)
