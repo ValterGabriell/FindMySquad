@@ -1,6 +1,7 @@
 package com.example.findmysquad.ViewModel
 
 import android.content.Context
+import android.net.Uri
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.lifecycle.ViewModel
@@ -22,4 +23,10 @@ class ConfigViewModel(private val configRepository: ConfigRepository) : ViewMode
     suspend fun clock(context: Context){
         configRepository.clock(context)
     }
+
+    suspend fun enviarFotoParaOStorage(filename:String, uri:Uri){
+        configRepository.uploadImgToBD(filename, uri)
+    }
+
+
 }

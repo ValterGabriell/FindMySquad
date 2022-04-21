@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.findmysquad.Model.ModelRequisicoes
 import com.example.findmysquad.R
@@ -14,6 +15,7 @@ import com.example.findmysquad.databinding.ActivityTelaPrincipalBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.koin.android.ext.android.inject
 
 class TelaPrincipalActivity : AppCompatActivity() {
@@ -29,12 +31,20 @@ class TelaPrincipalActivity : AppCompatActivity() {
         binding = ActivityTelaPrincipalBinding.inflate(layoutInflater)
         setContentView(binding.root)
         btnFab()
+        receberData()
     }
 
     private fun btnFab() {
         binding.fabMain.setOnClickListener {
             startActivity(Intent(this, AddNewRequisicao::class.java))
         }
+    }
+
+    private fun receberData() {
+        CoroutineScope(Dispatchers.IO).launch {
+            model.recuperarDadosDeRequisicoes()
+        }
+
     }
 
 

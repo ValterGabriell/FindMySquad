@@ -13,6 +13,8 @@ import com.example.findmysquad.Model.Objects.FirebaseFeatures
 import com.example.findmysquad.Model.Objects.Methods
 import com.example.findmysquad.View.TelaPrincipalActivity
 import com.google.android.material.chip.ChipGroup
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 
@@ -20,6 +22,7 @@ class ConfigRepository : IConfigRepository {
 
     private var timerDate: String = ""
     private var nickname: String = ""
+    private val imgRef = FirebaseFeatures.getStorage()
 
     override suspend fun validateForm(
         et: EditText,
@@ -33,8 +36,7 @@ class ConfigRepository : IConfigRepository {
                 "nickname" to getNickname(et),
                 "horario" to timerDate,
                 "lista-jogos" to filterChip(chipGroup),
-                "lista-plataformas" to filterChip(chipGroup2),
-                "img" to uploadImg(img)
+                "lista-plataformas" to filterChip(chipGroup2)
             )
 
             FirebaseFeatures.getDatabase().collection("User")
@@ -49,12 +51,15 @@ class ConfigRepository : IConfigRepository {
                     ).show()
                 }
 
-           uploadImg(img)
         }
     }
 
     override fun clock(context: Context) {
         timerDate = Methods.configTimerPicker(context)
+    }
+
+    override fun uploadImgToBD(filename:String, uri:Uri) {
+        imgRef.child("images/$filename").putFile(uri)
     }
 
     private fun getNickname(et: EditText): String {
@@ -64,16 +69,6 @@ class ConfigRepository : IConfigRepository {
 
     private fun filterChip(chipGroup: ChipGroup): MutableList<Int> {
         return chipGroup.checkedChipIds
-    }
-
-    private fun uploadImg(img: ImageView) : String{
-        val bitmap = (img.drawable as BitmapDrawable).bitmap
-        val baos = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos)
-        val data = baos.toByteArray()
-
-        FirebaseFeatures.getStorage().reference.child("imagens").child("img1").putBytes(data)
-        return data.toString()
     }
 
 }

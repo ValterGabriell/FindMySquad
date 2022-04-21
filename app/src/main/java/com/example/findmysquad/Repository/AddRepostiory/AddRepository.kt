@@ -23,9 +23,7 @@ class AddRepository {
     }
 
     private fun salvar(data: HashMap<String, Any?>) {
-        FirebaseFeatures.getDatabase().collection(Texts.REQUISICAO_NAME)
-            .document(FirebaseFeatures.getAuth().currentUser?.uid.toString())
-            .collection("Requisições").add(data)
+        FirebaseFeatures.getDatabase().collection(Texts.REQUISICAO_NAME).add(data)
     }
 
     fun clock(context: Context) {

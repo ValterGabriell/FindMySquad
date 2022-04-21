@@ -1,6 +1,7 @@
 package com.example.findmysquad.Repository.ConfigRepository
 
 import android.content.Context
+import android.net.Uri
 import android.widget.EditText
 import android.widget.ImageView
 import com.google.android.material.chip.ChipGroup
@@ -15,4 +16,6 @@ interface IConfigRepository {
     )
 
     fun clock(context: Context)
+
+    fun uploadImgToBD(filename:String, uri: Uri)
 }
