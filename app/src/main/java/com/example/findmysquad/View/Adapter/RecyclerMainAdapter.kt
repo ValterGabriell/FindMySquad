@@ -3,15 +3,20 @@ package com.example.findmysquad.View.Adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.findmysquad.Model.ModelRequisicoes
 import com.example.findmysquad.R
 
-class RecyclerMainAdapter(val list:List<ModelRequisicoes>) : RecyclerView.Adapter<RecyclerMainAdapter.MyViewHolder>() {
+class RecyclerMainAdapter(private val list: ArrayList<ModelRequisicoes>) :
+    RecyclerView.Adapter<RecyclerMainAdapter.MyViewHolder>() {
 
-    class MyViewHolder(itemView:View) : RecyclerView.ViewHolder(itemView){
+    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun onBind(modelRequisicoes: ModelRequisicoes) {
-
+            itemView.findViewById<TextView>(R.id.txtGame).text = modelRequisicoes.game.toString()
+            itemView.findViewById<TextView>(R.id.txtHorario).text = modelRequisicoes.horario
+            itemView.findViewById<TextView>(R.id.txtPlataform).text = modelRequisicoes.plataforma.toString()
+            itemView.findViewById<TextView>(R.id.txtUsername).text = modelRequisicoes.user
         }
 
     }
@@ -23,7 +28,7 @@ class RecyclerMainAdapter(val list:List<ModelRequisicoes>) : RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.onBind(list[position])
-        holder.itemView.setOnClickListener{
+        holder.itemView.setOnClickListener {
             onItemClick?.invoke(position)
         }
     }
@@ -33,7 +38,7 @@ class RecyclerMainAdapter(val list:List<ModelRequisicoes>) : RecyclerView.Adapte
     }
 
 
-    var onItemClick : ((Int) -> Unit)? = null
+    var onItemClick: ((Int) -> Unit)? = null
 
 
 }

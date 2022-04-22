@@ -4,7 +4,10 @@ import android.annotation.SuppressLint
 import android.app.TimePickerDialog
 import android.content.Context
 import android.net.Uri
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
+import com.orhanobut.logger.AndroidLogAdapter
+import com.orhanobut.logger.Logger
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -25,6 +28,8 @@ object Methods {
         ).show()
         return SimpleDateFormat("HH:mm").format(calendar.time)
     }
+
+    fun doALogger() = Logger.addLogAdapter(AndroidLogAdapter())
 
 
 }

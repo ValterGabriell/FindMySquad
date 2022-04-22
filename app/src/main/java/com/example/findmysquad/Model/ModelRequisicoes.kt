@@ -1,8 +1,8 @@
 package com.example.findmysquad.Model
 
 data class ModelRequisicoes (
-    private var game : String,
-    private var horario : String,
-    private var user : String,
-    private var plataforma : String
+    var game : ArrayList<Int> = arrayListOf(),
+    var horario : String = "",
+    var user : String = "",
+    var plataforma : ArrayList<Int> = arrayListOf()
         )

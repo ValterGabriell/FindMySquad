@@ -91,5 +91,8 @@ dependencies {
 // Jetpack Compose
     implementation "io.insert-koin:koin-androidx-compose:$koin_version"
 
+    //looger
+    implementation 'com.orhanobut:logger:2.2.0'
+
 
 }
