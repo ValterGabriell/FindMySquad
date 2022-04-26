@@ -3,19 +3,22 @@
     package="com.example.findmysquad">
 
     <application
+        android:name=".DI.MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".DI.MyApp"
         android:theme="@style/Theme.FindMySquad">
+        <activity
+            android:name=".View.MyRequicisoesActivity"
+            android:exported="false" />
         <activity
             android:name=".View.AddNewRequisicao"
             android:exported="false" />
         <activity
             android:name=".View.ConfigActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".View.LogarActivity"
             android:exported="true">
@@ -30,7 +33,7 @@
             android:exported="false" />
         <activity
             android:name=".View.CadastrarActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

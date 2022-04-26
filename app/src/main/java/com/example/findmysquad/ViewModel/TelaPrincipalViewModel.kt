@@ -18,8 +18,8 @@ class TelaPrincipalViewModel(private val telaPrincipalRepository: TelaPrincipalR
         telaPrincipalRepository.signOut(context)
     }
 
-    suspend fun configurarDados() {
-      telaPrincipalRepository.configurarDados(listaRequisicoes)
+    suspend fun configurarDados(id:String) {
+      telaPrincipalRepository.configurarDados(id, listaRequisicoes)
     }
 
 }

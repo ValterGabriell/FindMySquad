@@ -14,18 +14,21 @@ class ConfigViewModel(private val configRepository: ConfigRepository) : ViewMode
         et: EditText,
         chipGroup: ChipGroup,
         chipGroup2: ChipGroup,
-        context: Context,
-        img:ImageView
+        context: Context
     ) {
-        configRepository.validateForm(et, chipGroup, chipGroup2, context,img)
+        configRepository.validateForm(et, chipGroup, chipGroup2, context)
     }
 
-    suspend fun clock(context: Context){
-        configRepository.clock(context)
+    suspend fun abrirOTimerPickerEConfigurarAHora(context: Context){
+        configRepository.abrirOTimerPickerEConfigurarAHora(context)
     }
 
     suspend fun enviarFotoParaOStorage(filename:String, uri:Uri){
-        configRepository.uploadImgToBD(filename, uri)
+        configRepository.uparAImagemEscolhidaParaOBancoDeDados(filename, uri)
+    }
+
+    suspend fun receberFotoEPorNoBancoDeDados(){
+        configRepository.baixaAFotoDoStorageAtualizaNoPerfilENoBancoDeDados()
     }
 
 

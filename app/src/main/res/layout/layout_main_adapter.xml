@@ -2,6 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/imgReq"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
@@ -31,7 +32,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginBottom="16dp"
             android:text="TextView"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/txtGame"
@@ -41,7 +42,7 @@
             android:layout_marginTop="28dp"
             android:layout_marginEnd="128dp"
             android:text="TextView"
-            android:textSize="28sp" />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/txtPlataform"
@@ -52,7 +53,7 @@
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             android:text="TextView"
-            android:textSize="22sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/txtHorario"

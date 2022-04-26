@@ -29,6 +29,9 @@ class AddNewRequisicao : AppCompatActivity() {
         }
 
         binding.btnEnviar.setOnClickListener {
+
+
+
             CoroutineScope(Dispatchers.IO).launch {
                 model.addNewRequisicao(binding.chipGame, binding.chipPlata)
                 finish()

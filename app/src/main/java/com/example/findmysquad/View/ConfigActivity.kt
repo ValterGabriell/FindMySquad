@@ -2,12 +2,16 @@ package com.example.findmysquad.View
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
+import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.example.findmysquad.Model.Objects.FirebaseFeatures
 import com.example.findmysquad.ViewModel.ConfigViewModel
 import com.example.findmysquad.databinding.ActivityConfigBinding
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,7 +33,7 @@ class ConfigActivity : AppCompatActivity() {
 
         binding.btnHor.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
-                model.clock(this@ConfigActivity)
+                model.abrirOTimerPickerEConfigurarAHora(this@ConfigActivity)
             }
         }
 
@@ -45,10 +49,13 @@ class ConfigActivity : AppCompatActivity() {
                     binding.etNick,
                     binding.chipGroup,
                     binding.chipGroup2,
-                    this@ConfigActivity,
-                    binding.img
+                    this@ConfigActivity
                 )
             }
+            CoroutineScope(Dispatchers.IO).launch {
+                model.receberFotoEPorNoBancoDeDados()
+            }
+
         }
 
     }
@@ -58,7 +65,7 @@ class ConfigActivity : AppCompatActivity() {
             ActivityResultContracts.GetContent(),
             ActivityResultCallback {
                 binding.img.setImageURI(it)
-                enviarFotoParaOStorage("profilePhoto", it!!)
+                enviarFotoParaOStorage(FirebaseFeatures.getAuth().currentUser?.uid.toString(), it!!)
             }
         )
         binding.img.setOnClickListener {

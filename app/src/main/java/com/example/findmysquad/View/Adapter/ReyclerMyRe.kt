@@ -10,11 +10,11 @@ import com.example.findmysquad.Model.ModelRequisicoes
 import com.example.findmysquad.R
 import com.squareup.picasso.Picasso
 
-class RecyclerMainAdapter(private val list: ArrayList<ModelRequisicoes>) :
-    RecyclerView.Adapter<RecyclerMainAdapter.MyViewHolder>() {
+class ReyclerMyRe(private val listaR: ArrayList<ModelRequisicoes>) :
+    RecyclerView.Adapter<ReyclerMyRe.MyViewHolderR>() {
 
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun onBind(modelRequisicoes: ModelRequisicoes) {
+    inner class MyViewHolderR(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bind(modelRequisicoes: ModelRequisicoes) {
             itemView.findViewById<TextView>(R.id.txtGame).text = modelRequisicoes.game.toString()
             itemView.findViewById<TextView>(R.id.txtHorario).text = modelRequisicoes.horario
             itemView.findViewById<TextView>(R.id.txtPlataform).text =
@@ -24,27 +24,21 @@ class RecyclerMainAdapter(private val list: ArrayList<ModelRequisicoes>) :
             Picasso.get().load(modelRequisicoes.photoUri).into(img)
         }
 
+
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolderR {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.layout_main_adapter, parent, false)
-        return MyViewHolder(view)
+        return MyViewHolderR(view)
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.onBind(list[position])
-        holder.itemView.setOnClickListener {
-            onItemClick?.invoke(position)
-        }
+    override fun onBindViewHolder(holder: MyViewHolderR, position: Int) {
+        holder.bind(listaR[position])
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return listaR.size
     }
-
-
-    var onItemClick: ((Int) -> Unit)? = null
-
 
 }

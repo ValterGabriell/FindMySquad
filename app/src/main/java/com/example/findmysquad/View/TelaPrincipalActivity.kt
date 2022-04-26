@@ -39,7 +39,7 @@ class TelaPrincipalActivity : AppCompatActivity() {
 
     private fun configRecycler() {
         CoroutineScope(Dispatchers.IO).launch {
-            model.configurarDados()
+            model.configurarDados(FirebaseFeatures.getAuth().currentUser?.uid.toString())
         }
         CoroutineScope(Dispatchers.Main).launch {
             model.listaRequisicoes.observe(this@TelaPrincipalActivity) {
@@ -65,7 +65,7 @@ class TelaPrincipalActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.id_profile -> {
-                startActivity(Intent(this, ConfigActivity::class.java))
+                startActivity(Intent(this, MyRequicisoesActivity::class.java))
             }
 
             R.id.id_logout -> {

@@ -94,5 +94,8 @@ dependencies {
     //looger
     implementation 'com.orhanobut:logger:2.2.0'
 
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
 
 }

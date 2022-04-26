@@ -10,5 +10,5 @@ import com.google.firebase.firestore.QuerySnapshot
 
 interface ITelaPrincipalRepository {
     suspend fun signOut(context: Context)
-    suspend fun configurarDados(listaRequisicoes : MutableLiveData<ArrayList<ModelRequisicoes>>)
+    suspend fun configurarDados(id:String, listaRequisicoes : MutableLiveData<ArrayList<ModelRequisicoes>>)
 }
