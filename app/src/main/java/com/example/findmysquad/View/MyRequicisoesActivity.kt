@@ -1,8 +1,11 @@
 package com.example.findmysquad.View
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.findmysquad.Model.ModelRequisicoes
 import com.example.findmysquad.Model.Objects.FirebaseFeatures
@@ -44,7 +47,19 @@ class MyRequicisoesActivity : AppCompatActivity() {
                 binding.recyclerMyRe.layoutManager = LinearLayoutManager(this@MyRequicisoesActivity)
             }
         }
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_edit_profile, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.edit_profile -> {
+                startActivity(Intent(this, EditProfileActivity::class.java))
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

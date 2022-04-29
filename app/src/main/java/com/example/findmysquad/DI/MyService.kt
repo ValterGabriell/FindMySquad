@@ -3,6 +3,7 @@ package com.example.findmysquad.DI
 import com.example.findmysquad.Repository.AddRepostiory.AddRepository
 import com.example.findmysquad.Repository.CadastrarRepository.CadastrarRepository
 import com.example.findmysquad.Repository.ConfigRepository.ConfigRepository
+import com.example.findmysquad.Repository.EditProfileRepository.EditProfileRepository
 import com.example.findmysquad.Repository.LogarRepository.LogarRepository
 import com.example.findmysquad.Repository.MyReqRep.MyReqRep
 import com.example.findmysquad.Repository.TelaPrincipalRepository.TelaPrincipalRepository
@@ -18,6 +19,7 @@ val appModule = module {
     single { LogarRepository() }
     single { TelaPrincipalRepository() }
     single { MyReqRep() }
+    single { EditProfileRepository() }
 }
 
 
@@ -28,4 +30,5 @@ val viewModelModule = module {
     viewModel { LogarViewModel(get()) }
     viewModel { TelaPrincipalViewModel(get()) }
     viewModel { MyReqRepViewModel(get()) }
+    viewModel { EditProfileViewModel(get()) }
 }

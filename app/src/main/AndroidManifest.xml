@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FindMySquad">
         <activity
+            android:name=".View.EditProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".View.MyRequicisoesActivity"
             android:exported="false" />
         <activity
