@@ -6,5 +6,6 @@ object Texts {
     const val EMAIL_INVALIDO = "Digite um email valido"
     const val SEM_CONEXAO = "Sem conexao"
     const val REQUISICAO_NAME = "Requisições"
+    const val USERS_NAME = "User"
 
 }

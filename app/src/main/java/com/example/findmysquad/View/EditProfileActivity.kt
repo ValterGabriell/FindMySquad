@@ -1,17 +1,36 @@
 package com.example.findmysquad.View
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.findmysquad.R
+import androidx.appcompat.app.AppCompatActivity
+import com.example.findmysquad.ViewModel.EditProfileViewModel
 import com.example.findmysquad.databinding.ActivityEditProfileBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 
 class EditProfileActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEditProfileBinding
-
+    private val model by inject<EditProfileViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        CoroutineScope(Dispatchers.IO).launch {
+            model.recuperarDadosUsuario(binding.etNick, binding.etEmailProfile, binding.img)
+        }
+
+
+        binding.btnDelete.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                model.deletarConta(this@EditProfileActivity)
+            }
+
+        }
+
+
     }
 }
