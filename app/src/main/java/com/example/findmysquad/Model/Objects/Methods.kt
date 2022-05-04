@@ -28,8 +28,4 @@ object Methods {
         ).show()
         return SimpleDateFormat("HH:mm").format(calendar.time)
     }
-
-    fun doALogger() = Logger.addLogAdapter(AndroidLogAdapter())
-
-
 }
