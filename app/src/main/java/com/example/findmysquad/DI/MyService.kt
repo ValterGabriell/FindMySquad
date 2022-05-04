@@ -1,8 +1,8 @@
 package com.example.findmysquad.DI
 
-import com.example.findmysquad.Repository.AddRepostiory.AddRepository
+import com.example.findmysquad.Repository.AddRequisitionRepostiory.AddRequisitonRepository
 import com.example.findmysquad.Repository.CadastrarRepository.CadastrarRepository
-import com.example.findmysquad.Repository.ConfigRepository.ConfigRepository
+import com.example.findmysquad.Repository.ConfigNewUserRepository.ConfigNewUserRepository
 import com.example.findmysquad.Repository.EditProfileRepository.EditProfileRepository
 import com.example.findmysquad.Repository.LogarRepository.LogarRepository
 import com.example.findmysquad.Repository.MyReqRep.MyReqRep
@@ -14,8 +14,8 @@ import org.koin.dsl.module
 
 val appModule = module {
     single { CadastrarRepository() }
-    single { AddRepository() }
-    single { ConfigRepository() }
+    single { AddRequisitonRepository() }
+    single { ConfigNewUserRepository() }
     single { LogarRepository() }
     single { TelaPrincipalRepository() }
     single { MyReqRep() }
@@ -26,7 +26,7 @@ val appModule = module {
 val viewModelModule = module {
     viewModel { CadastrarViewModel(get()) }
     viewModel { ConfigViewModel(get()) }
-    viewModel { AddViewModel(get()) }
+    viewModel { AddRequisitonViewModel(get()) }
     viewModel { LogarViewModel(get()) }
     viewModel { TelaPrincipalViewModel(get()) }
     viewModel { MyReqRepViewModel(get()) }

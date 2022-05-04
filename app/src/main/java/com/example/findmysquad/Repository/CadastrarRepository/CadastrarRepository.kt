@@ -5,7 +5,7 @@ import android.content.Intent
 import android.widget.Toast
 import com.example.findmysquad.Model.Objects.FirebaseFeatures
 import com.example.findmysquad.Model.Objects.Texts
-import com.example.findmysquad.View.ConfigActivity
+import com.example.findmysquad.View.AddUserActivity
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
@@ -30,7 +30,7 @@ class CadastrarRepository : ICadastrarRepository {
     }
 
     override fun changeActivity(context: Context) {
-        val intent = Intent(context, ConfigActivity::class.java)
+        val intent = Intent(context, AddUserActivity::class.java)
         context.startActivity(intent)
     }
 

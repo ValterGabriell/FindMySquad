@@ -20,7 +20,7 @@
             android:name=".View.AddNewRequisicao"
             android:exported="false" />
         <activity
-            android:name=".View.ConfigActivity"
+            android:name=".View.AddUserActivity"
             android:exported="true" />
         <activity
             android:name=".View.LogarActivity"

@@ -2,8 +2,6 @@ package com.example.findmysquad.View
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
@@ -11,14 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.findmysquad.Model.Objects.FirebaseFeatures
 import com.example.findmysquad.ViewModel.ConfigViewModel
 import com.example.findmysquad.databinding.ActivityConfigBinding
-import com.google.firebase.auth.ktx.userProfileChangeRequest
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.koin.android.ext.android.inject
 
-class ConfigActivity : AppCompatActivity() {
+class AddUserActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityConfigBinding
     private val model by inject<ConfigViewModel>()
@@ -33,7 +30,7 @@ class ConfigActivity : AppCompatActivity() {
 
         binding.btnHor.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
-                model.abrirOTimerPickerEConfigurarAHora(this@ConfigActivity)
+                model.abrirOTimerPickerEConfigurarAHora(this@AddUserActivity)
             }
         }
 
@@ -49,7 +46,7 @@ class ConfigActivity : AppCompatActivity() {
                     binding.etNick,
                     binding.chipGroup,
                     binding.chipGroup2,
-                    this@ConfigActivity
+                    this@AddUserActivity
                 )
             }
             CoroutineScope(Dispatchers.IO).launch {
@@ -79,14 +76,14 @@ class ConfigActivity : AppCompatActivity() {
                 model.enviarFotoParaOStorage(filename, uri)
                 withContext(Dispatchers.Main) {
                     Toast.makeText(
-                        this@ConfigActivity,
+                        this@AddUserActivity,
                         "Sucesso ao enviar a foto",
                         Toast.LENGTH_LONG
                     ).show()
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@ConfigActivity, e.message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@AddUserActivity, e.message, Toast.LENGTH_LONG).show()
                 }
             }
         }

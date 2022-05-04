@@ -10,9 +10,11 @@ class MyReqRep : IMyReqRep {
         id: String,
         lista: MutableLiveData<ArrayList<ModelRequisicoes>>
     ) {
-        val query = FirebaseFeatures.getDatabase().collection(Texts.REQUISICAO_NAME).whereEqualTo(
-            "User", id
-        ).get()
+        val query = FirebaseFeatures.getDatabase().collection(Texts.REQUISICAO_NAME)
+            .document(FirebaseFeatures.getAuth().currentUser?.uid.toString())
+            .collection(Texts.LISTA_REQUISICAO_NAME).whereEqualTo(
+                "User", id
+            ).get()
         val listaModel = ArrayList<ModelRequisicoes>()
         query.addOnSuccessListener { documents ->
             for (ids in 0 until documents.size()) {

@@ -23,6 +23,24 @@ class EditProfileActivity : AppCompatActivity() {
             model.recuperarDadosUsuario(binding.etNick, binding.etEmailProfile, binding.img)
         }
 
+        binding.btnHor.setOnClickListener {
+            CoroutineScope(Dispatchers.Main).launch {
+                model.abrirOTimerPickerEConfigurarAHora(this@EditProfileActivity)
+            }
+        }
+
+        binding.btnConfirm.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
+                model.atualizarCadastroUsuario(
+                    binding.etNick,
+                    binding.etEmailProfile,
+                    binding.chipGroup,
+                    binding.chipGroup2,
+                    this@EditProfileActivity
+                )
+            }
+        }
+
 
         binding.btnDelete.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {

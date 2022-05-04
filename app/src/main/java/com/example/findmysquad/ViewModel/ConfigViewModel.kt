@@ -3,12 +3,11 @@ package com.example.findmysquad.ViewModel
 import android.content.Context
 import android.net.Uri
 import android.widget.EditText
-import android.widget.ImageView
 import androidx.lifecycle.ViewModel
-import com.example.findmysquad.Repository.ConfigRepository.ConfigRepository
+import com.example.findmysquad.Repository.ConfigNewUserRepository.ConfigNewUserRepository
 import com.google.android.material.chip.ChipGroup
 
-class ConfigViewModel(private val configRepository: ConfigRepository) : ViewModel() {
+class ConfigViewModel(private val configRepository: ConfigNewUserRepository) : ViewModel() {
 
     suspend fun validateForm(
         et: EditText,

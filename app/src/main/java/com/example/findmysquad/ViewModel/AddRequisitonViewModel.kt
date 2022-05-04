@@ -2,10 +2,10 @@ package com.example.findmysquad.ViewModel
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
-import com.example.findmysquad.Repository.AddRepostiory.AddRepository
+import com.example.findmysquad.Repository.AddRequisitionRepostiory.AddRequisitonRepository
 import com.google.android.material.chip.ChipGroup
 
-class AddViewModel(private val addRepository: AddRepository) : ViewModel() {
+class AddRequisitonViewModel(private val addRepository: AddRequisitonRepository) : ViewModel() {
 
 
     fun addNewRequisicao(chipGroup: ChipGroup, chipGroup2: ChipGroup) {

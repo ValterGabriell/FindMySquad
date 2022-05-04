@@ -2,9 +2,7 @@ package com.example.findmysquad.View
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
-import com.example.findmysquad.R
-import com.example.findmysquad.ViewModel.AddViewModel
+import com.example.findmysquad.ViewModel.AddRequisitonViewModel
 import com.example.findmysquad.databinding.ActivityAddNewRequisicaoBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +12,7 @@ import org.koin.android.ext.android.inject
 class AddNewRequisicao : AppCompatActivity() {
 
     private lateinit var binding : ActivityAddNewRequisicaoBinding
-    private val model by inject<AddViewModel>()
+    private val model by inject<AddRequisitonViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,9 +27,6 @@ class AddNewRequisicao : AppCompatActivity() {
         }
 
         binding.btnEnviar.setOnClickListener {
-
-
-
             CoroutineScope(Dispatchers.IO).launch {
                 model.addNewRequisicao(binding.chipGame, binding.chipPlata)
                 finish()

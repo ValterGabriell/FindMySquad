@@ -1,4 +1,4 @@
-package com.example.findmysquad.Repository.AddRepostiory
+package com.example.findmysquad.Repository.AddRequisitionRepostiory
 
 import android.content.Context
 import android.util.Log
@@ -8,7 +8,7 @@ import com.example.findmysquad.Model.Objects.Texts
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 
-class AddRepository : IAddRepository {
+class AddRequisitonRepository : IAddRepository {
     private var timerDate: String = ""
     override fun addNewRequisicao(chipGroup: ChipGroup, chipGroup2: ChipGroup) {
         val data = hashMapOf(
@@ -17,12 +17,13 @@ class AddRepository : IAddRepository {
             "User" to FirebaseFeatures.getAuth().currentUser?.uid,
             "UserNick" to FirebaseFeatures.getAuth().currentUser?.displayName,
             "Plataforma" to filterChip(chipGroup2),
-            "PhotoUri" to FirebaseFeatures.getAuth().currentUser?.photoUrl.toString()
+            "PhotoUri" to FirebaseFeatures.getAuth().currentUser?.photoUrl.toString(),
+            "Email" to FirebaseFeatures.getAuth().currentUser?.email
         )
         salvar(data)
     }
 
-    override fun retriveProfile() {
+    override fun uploadFotoProfile() {
         val profileUpdate = userProfileChangeRequest {
             FirebaseFeatures.getStorage()
                 .child("images/${FirebaseFeatures.getAuth().currentUser?.uid}")
@@ -41,7 +42,11 @@ class AddRepository : IAddRepository {
     }
 
     private fun salvar(data: HashMap<String, Any?>) {
-        FirebaseFeatures.getDatabase().collection(Texts.REQUISICAO_NAME).add(data)
+
+        FirebaseFeatures.getDatabase().collection(Texts.REQUISICAO_NAME)
+            .document(FirebaseFeatures.getAuth().currentUser?.uid.toString())
+            .collection(Texts.LISTA_REQUISICAO_NAME).add(data)
+
     }
 
     fun clock(context: Context) {

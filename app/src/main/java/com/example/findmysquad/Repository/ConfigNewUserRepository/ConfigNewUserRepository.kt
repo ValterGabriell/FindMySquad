@@ -1,26 +1,17 @@
-package com.example.findmysquad.Repository.ConfigRepository
+package com.example.findmysquad.Repository.ConfigNewUserRepository
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
-import android.util.Log
 import android.widget.EditText
-import android.widget.ImageView
 import android.widget.Toast
-import androidx.core.view.drawToBitmap
 import com.example.findmysquad.Model.Objects.FirebaseFeatures
 import com.example.findmysquad.Model.Objects.Methods
 import com.example.findmysquad.View.TelaPrincipalActivity
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.ktx.userProfileChangeRequest
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
-import java.io.ByteArrayInputStream
-import java.io.ByteArrayOutputStream
 
-class ConfigRepository : IConfigRepository {
+class ConfigNewUserRepository : IConfigRepository {
 
     private var timerDate: String = ""
     private var nickname: String = ""
@@ -40,8 +31,7 @@ class ConfigRepository : IConfigRepository {
                 "lista-jogos" to filtrarOQueFoiClicadoNoChipGroup(chipGroup),
                 "lista-plataformas" to filtrarOQueFoiClicadoNoChipGroup(chipGroup2),
                 "userId" to auth?.uid.toString(),
-                "email" to auth?.email.toString(),
-                "photo" to ""
+                "email" to auth?.email.toString()
             )
             /**
              * upar perfil do usuario
