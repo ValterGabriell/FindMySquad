@@ -5,9 +5,11 @@ import android.content.Intent
 import android.net.Uri
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.view.children
 import com.example.findmysquad.Model.Objects.FirebaseFeatures
 import com.example.findmysquad.Model.Objects.Methods
 import com.example.findmysquad.View.TelaPrincipalActivity
+import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 
@@ -89,8 +91,10 @@ class ConfigNewUserRepository : IConfigRepository {
         return nickname
     }
 
-    private fun filtrarOQueFoiClicadoNoChipGroup(chipGroup: ChipGroup): MutableList<Int> {
-        return chipGroup.checkedChipIds
+    private fun filtrarOQueFoiClicadoNoChipGroup(chipGroup: ChipGroup): List<String> {
+        return chipGroup.children
+            .filter { (it as Chip).isChecked }
+            .map { (it as Chip).text.toString() }.toList()
     }
 
 }

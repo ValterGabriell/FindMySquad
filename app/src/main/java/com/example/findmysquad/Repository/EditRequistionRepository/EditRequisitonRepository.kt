@@ -3,22 +3,16 @@ package com.example.findmysquad.Repository.EditRequistionRepository
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.children
 import com.example.findmysquad.Model.Objects.FirebaseFeatures
 import com.example.findmysquad.Model.Objects.Methods
 import com.example.findmysquad.Model.Objects.Texts
-import com.example.findmysquad.View.LogarActivity
 import com.example.findmysquad.View.TelaPrincipalActivity
+import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FieldValue
-import com.squareup.picasso.Picasso
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class EditRequisitonRepository : IEditRequisitionRepository {
     private var timerDate: String = ""
@@ -63,8 +57,10 @@ class EditRequisitonRepository : IEditRequisitionRepository {
     }
 
 
-    private fun filterChip(chipGroup: ChipGroup): MutableList<Int> {
-        return chipGroup.checkedChipIds
+    private fun filterChip(chipGroup: ChipGroup): List<String> {
+        return chipGroup.children
+            .filter { (it as Chip).isChecked }
+            .map { (it as Chip).text.toString() }.toList()
     }
 
     private fun salvar(data: HashMap<String, Any?>, idField: String) {

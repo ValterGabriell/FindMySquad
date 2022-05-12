@@ -7,12 +7,14 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.view.children
 import com.example.findmysquad.Model.ModelRequisicoes
 import com.example.findmysquad.Model.Objects.FirebaseFeatures
 import com.example.findmysquad.Model.Objects.Methods
 import com.example.findmysquad.Model.Objects.Texts
 import com.example.findmysquad.View.LogarActivity
 import com.example.findmysquad.View.TelaPrincipalActivity
+import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.squareup.picasso.Picasso
@@ -72,8 +74,10 @@ class EditProfileRepository : IEditProfileRepository {
         return nickname
     }
 
-    private fun filtrarOQueFoiClicadoNoChipGroup(chipGroup: ChipGroup): MutableList<Int> {
-        return chipGroup.checkedChipIds
+    private fun filtrarOQueFoiClicadoNoChipGroup(chipGroup: ChipGroup): List<String> {
+        return chipGroup.children
+            .filter { (it as Chip).isChecked }
+            .map { (it as Chip).text.toString() }.toList()
     }
 
 

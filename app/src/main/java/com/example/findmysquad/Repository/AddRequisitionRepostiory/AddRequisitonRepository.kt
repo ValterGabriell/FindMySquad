@@ -2,13 +2,14 @@ package com.example.findmysquad.Repository.AddRequisitionRepostiory
 
 import android.content.Context
 import android.util.Log
+import androidx.core.view.children
 import com.example.findmysquad.Model.Objects.FirebaseFeatures
 import com.example.findmysquad.Model.Objects.Methods
 import com.example.findmysquad.Model.Objects.Texts
+import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FieldValue
-import org.koin.core.component.getScopeId
 
 class AddRequisitonRepository : IAddRepository {
     private var timerDate: String = ""
@@ -41,8 +42,10 @@ class AddRequisitonRepository : IAddRepository {
         FirebaseFeatures.getAuth().currentUser?.updateProfile(profileUpdate)
     }
 
-    private fun filterChip(chipGroup: ChipGroup): MutableList<Int> {
-        return chipGroup.checkedChipIds
+    private fun filterChip(chipGroup: ChipGroup): List<String> {
+        return chipGroup.children
+            .filter { (it as Chip).isChecked }
+            .map { (it as Chip).text.toString() }.toList()
     }
 
     private fun salvar(data: HashMap<String, Any?>) {
