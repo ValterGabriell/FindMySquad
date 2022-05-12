@@ -10,9 +10,11 @@ class MyReqRep : IMyReqRep {
         id: String,
         lista: MutableLiveData<ArrayList<ModelRequisicoes>>
     ) {
-        val query = FirebaseFeatures.getDatabase().collection(Texts.REQUISICAO_NAME)
+        val query = FirebaseFeatures.getDatabase()
+            .collection(Texts.REQUISICAO_NAME)
             .document(FirebaseFeatures.getAuth().currentUser?.uid.toString())
-            .collection(Texts.LISTA_REQUISICAO_NAME).whereEqualTo(
+            .collection(Texts.LISTA_REQUISICAO_NAME)
+            .whereEqualTo(
                 "User", id
             ).get()
         val listaModel = ArrayList<ModelRequisicoes>()
@@ -25,12 +27,12 @@ class MyReqRep : IMyReqRep {
                     game = documents.documents[ids].data?.get("Jogo") as ArrayList<Int>
                     plataforma = documents.documents[ids].data?.get("Plataforma") as ArrayList<Int>
                     photoUri = documents.documents[ids].get("PhotoUri").toString()
+                    idField = documents.documents[ids].get("IdReq").toString()
                     listaModel.add(model)
                 }
             }
             listaModel.reverse()
             lista.postValue(listaModel)
-
         }
     }
 }

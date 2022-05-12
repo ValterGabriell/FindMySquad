@@ -16,8 +16,4 @@ class AddRequisitonViewModel(private val addRepository: AddRequisitonRepository)
         addRepository.clock(context)
     }
 
-    suspend fun pegarFotoEUparNaRequisicao(){
-
-    }
-
 }

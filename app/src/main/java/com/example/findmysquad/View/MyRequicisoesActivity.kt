@@ -1,11 +1,10 @@
 package com.example.findmysquad.View
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.findmysquad.Model.ModelRequisicoes
 import com.example.findmysquad.Model.Objects.FirebaseFeatures
@@ -45,6 +44,13 @@ class MyRequicisoesActivity : AppCompatActivity() {
                 adapter = ReyclerMyRe(lista)
                 binding.recyclerMyRe.adapter = adapter
                 binding.recyclerMyRe.layoutManager = LinearLayoutManager(this@MyRequicisoesActivity)
+                adapter.onItemClick = { position, IdField ->
+                    val intent =
+                        Intent(this@MyRequicisoesActivity, EditarRequisicaoActivity::class.java)
+                    intent.putExtra("idField", IdField)
+                    startActivity(intent)
+
+                }
             }
         }
     }

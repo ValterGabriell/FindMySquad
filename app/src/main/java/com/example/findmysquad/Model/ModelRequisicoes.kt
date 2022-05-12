@@ -5,5 +5,6 @@ data class ModelRequisicoes (
     var horario : String = "",
     var user : String = "",
     var plataforma : ArrayList<Int> = arrayListOf(),
-    var photoUri : String = ""
+    var photoUri : String = "",
+    var idField:String = ""
         )

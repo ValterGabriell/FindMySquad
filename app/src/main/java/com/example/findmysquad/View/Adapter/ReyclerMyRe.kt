@@ -15,7 +15,7 @@ class ReyclerMyRe(private val listaR: ArrayList<ModelRequisicoes>) :
 
     inner class MyViewHolderR(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(modelRequisicoes: ModelRequisicoes) {
-            itemView.findViewById<TextView>(R.id.txtGame).text = modelRequisicoes.game.toString()
+            itemView.findViewById<TextView>(R.id.txtGame).text = modelRequisicoes.idField.toString()
             itemView.findViewById<TextView>(R.id.txtHorario).text = modelRequisicoes.horario
             itemView.findViewById<TextView>(R.id.txtPlataform).text =
                 modelRequisicoes.plataforma.toString()
@@ -35,10 +35,15 @@ class ReyclerMyRe(private val listaR: ArrayList<ModelRequisicoes>) :
 
     override fun onBindViewHolder(holder: MyViewHolderR, position: Int) {
         holder.bind(listaR[position])
+        holder.itemView.setOnClickListener {
+            onItemClick?.invoke(position, listaR[position].idField)
+        }
     }
 
     override fun getItemCount(): Int {
         return listaR.size
     }
+
+    var onItemClick: ((Int, String) -> Unit)? = null
 
 }

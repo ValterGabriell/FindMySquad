@@ -7,9 +7,12 @@ import com.example.findmysquad.Model.Objects.Methods
 import com.example.findmysquad.Model.Objects.Texts
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.firestore.FieldValue
+import org.koin.core.component.getScopeId
 
 class AddRequisitonRepository : IAddRepository {
     private var timerDate: String = ""
+    private var fieldValue: String = ""
     override fun addNewRequisicao(chipGroup: ChipGroup, chipGroup2: ChipGroup) {
         val data = hashMapOf(
             "Jogo" to filterChip(chipGroup),
@@ -18,7 +21,8 @@ class AddRequisitonRepository : IAddRepository {
             "UserNick" to FirebaseFeatures.getAuth().currentUser?.displayName,
             "Plataforma" to filterChip(chipGroup2),
             "PhotoUri" to FirebaseFeatures.getAuth().currentUser?.photoUrl.toString(),
-            "Email" to FirebaseFeatures.getAuth().currentUser?.email
+            "Email" to FirebaseFeatures.getAuth().currentUser?.email,
+            "IdReq" to fieldValue
         )
         salvar(data)
     }
@@ -42,10 +46,24 @@ class AddRequisitonRepository : IAddRepository {
     }
 
     private fun salvar(data: HashMap<String, Any?>) {
+        fieldValue = FieldValue.increment(1).toString()
+        FirebaseFeatures.getDatabase().collection(Texts.REQUISICAO_NAME)
+            .document(FirebaseFeatures.getAuth().currentUser?.uid.toString())
+            .collection(Texts.LISTA_REQUISICAO_NAME).document(fieldValue).set(data)
 
         FirebaseFeatures.getDatabase().collection(Texts.REQUISICAO_NAME)
             .document(FirebaseFeatures.getAuth().currentUser?.uid.toString())
-            .collection(Texts.LISTA_REQUISICAO_NAME).add(data)
+            .collection(Texts.LISTA_REQUISICAO_NAME).document(fieldValue)
+            .update("IdReq", fieldValue)
+
+
+
+        FirebaseFeatures.getDatabase().collection(Texts.REQUISICAO_GERAL).document(fieldValue)
+            .set(data)
+
+        FirebaseFeatures.getDatabase().collection(Texts.REQUISICAO_GERAL).document(fieldValue)
+            .update("IdReq", fieldValue)
+
 
     }
 

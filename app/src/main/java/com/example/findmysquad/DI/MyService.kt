@@ -4,6 +4,7 @@ import com.example.findmysquad.Repository.AddRequisitionRepostiory.AddRequisiton
 import com.example.findmysquad.Repository.CadastrarRepository.CadastrarRepository
 import com.example.findmysquad.Repository.ConfigNewUserRepository.ConfigNewUserRepository
 import com.example.findmysquad.Repository.EditProfileRepository.EditProfileRepository
+import com.example.findmysquad.Repository.EditRequistionRepository.EditRequisitonRepository
 import com.example.findmysquad.Repository.LogarRepository.LogarRepository
 import com.example.findmysquad.Repository.MyReqRep.MyReqRep
 import com.example.findmysquad.Repository.TelaPrincipalRepository.TelaPrincipalRepository
@@ -20,6 +21,7 @@ val appModule = module {
     single { TelaPrincipalRepository() }
     single { MyReqRep() }
     single { EditProfileRepository() }
+    single { EditRequisitonRepository() }
 }
 
 
@@ -31,4 +33,5 @@ val viewModelModule = module {
     viewModel { TelaPrincipalViewModel(get()) }
     viewModel { MyReqRepViewModel(get()) }
     viewModel { EditProfileViewModel(get()) }
+    viewModel { EditarRequisicaoViewModel(get()) }
 }
