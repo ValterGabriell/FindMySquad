@@ -35,7 +35,7 @@ class RecyclerMainAdapter(private val list: ArrayList<ModelRequisicoes>) :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.onBind(list[position])
         holder.itemView.setOnClickListener {
-            onItemClick?.invoke(position)
+            onItemClick?.invoke(position, list[position].userId)
         }
     }
 
@@ -44,7 +44,7 @@ class RecyclerMainAdapter(private val list: ArrayList<ModelRequisicoes>) :
     }
 
 
-    var onItemClick: ((Int) -> Unit)? = null
+    var onItemClick: ((Int, String) -> Unit)? = null
 
 
 }

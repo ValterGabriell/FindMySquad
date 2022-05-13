@@ -7,7 +7,7 @@ import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.findmysquad.Model.Objects.FirebaseFeatures
-import com.example.findmysquad.ViewModel.ConfigViewModel
+import com.example.findmysquad.ViewModel.ConfigurarUserViewModel
 import com.example.findmysquad.databinding.ActivityConfigBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +18,7 @@ import org.koin.android.ext.android.inject
 class AddUserActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityConfigBinding
-    private val model by inject<ConfigViewModel>()
+    private val model by inject<ConfigurarUserViewModel>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +44,7 @@ class AddUserActivity : AppCompatActivity() {
             CoroutineScope(Dispatchers.Main).launch {
                 model.validateForm(
                     binding.etNick,
+                    binding.etNumber,
                     binding.chipGroup,
                     binding.chipGroup2,
                     this@AddUserActivity

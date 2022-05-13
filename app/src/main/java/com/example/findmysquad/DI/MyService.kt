@@ -27,7 +27,7 @@ val appModule = module {
 
 val viewModelModule = module {
     viewModel { CadastrarViewModel(get()) }
-    viewModel { ConfigViewModel(get()) }
+    viewModel { ConfigurarUserViewModel(get()) }
     viewModel { AddRequisitonViewModel(get()) }
     viewModel { LogarViewModel(get()) }
     viewModel { TelaPrincipalViewModel(get()) }

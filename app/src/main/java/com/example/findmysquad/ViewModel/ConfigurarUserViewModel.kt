@@ -7,15 +7,16 @@ import androidx.lifecycle.ViewModel
 import com.example.findmysquad.Repository.ConfigNewUserRepository.ConfigNewUserRepository
 import com.google.android.material.chip.ChipGroup
 
-class ConfigViewModel(private val configRepository: ConfigNewUserRepository) : ViewModel() {
+class ConfigurarUserViewModel(private val configRepository: ConfigNewUserRepository) : ViewModel() {
 
     suspend fun validateForm(
         et: EditText,
+        etNumber:EditText,
         chipGroup: ChipGroup,
         chipGroup2: ChipGroup,
         context: Context
     ) {
-        configRepository.validateForm(et, chipGroup, chipGroup2, context)
+        configRepository.validateForm(et,etNumber, chipGroup, chipGroup2, context)
     }
 
     suspend fun abrirOTimerPickerEConfigurarAHora(context: Context){

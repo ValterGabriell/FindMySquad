@@ -1,6 +1,7 @@
 package com.example.findmysquad.View
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -47,6 +48,9 @@ class TelaPrincipalActivity : AppCompatActivity() {
                 adapter = RecyclerMainAdapter(listaRequisicoesMain)
                 binding.recyclerMain.adapter = adapter
                 binding.recyclerMain.layoutManager = LinearLayoutManager(this@TelaPrincipalActivity)
+                adapter.onItemClick = {position, id ->
+                        model.recuperarNumeroCelular(this@TelaPrincipalActivity, id)
+                }
             }
         }
     }

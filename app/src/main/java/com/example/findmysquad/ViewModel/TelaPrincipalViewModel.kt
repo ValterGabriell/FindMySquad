@@ -1,13 +1,15 @@
 package com.example.findmysquad.ViewModel
 
 import android.content.Context
-import android.util.Log
+import android.content.Intent
+import android.net.Uri
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.findmysquad.Model.ModelRequisicoes
 import com.example.findmysquad.Model.Objects.FirebaseFeatures
-import com.example.findmysquad.Model.Objects.Texts
 import com.example.findmysquad.Repository.TelaPrincipalRepository.TelaPrincipalRepository
+
 
 class TelaPrincipalViewModel(private val telaPrincipalRepository: TelaPrincipalRepository) :
     ViewModel() {
@@ -18,8 +20,20 @@ class TelaPrincipalViewModel(private val telaPrincipalRepository: TelaPrincipalR
         telaPrincipalRepository.signOut(context)
     }
 
-    suspend fun configurarDados(id:String) {
-      telaPrincipalRepository.configurarDados(id, listaRequisicoes)
+    suspend fun configurarDados(id: String) {
+        telaPrincipalRepository.configurarDados(id, listaRequisicoes)
+    }
+
+    fun recuperarNumeroCelular(context: Context, id: String) {
+        FirebaseFeatures.getDatabase().collection("User")
+            .document(id).get().addOnSuccessListener { task ->
+                val number = task.data?.getValue("numeroCelular")
+                val intent = Intent(Intent.ACTION_VIEW)
+                intent.data =
+                    Uri.parse("https://api.whatsapp.com/send?phone=$number&text=Que horas vai ser o game?")
+                context.startActivity(intent)
+            }
+
     }
 
 }

@@ -6,6 +6,7 @@ import com.example.findmysquad.Model.Objects.FirebaseFeatures
 import com.example.findmysquad.Model.Objects.Texts
 
 class MyReqRep : IMyReqRep {
+    private val auth = FirebaseFeatures.getAuth().currentUser
     override suspend fun recuperarRequisicoesPorUsuario(
         id: String,
         lista: MutableLiveData<ArrayList<ModelRequisicoes>>
@@ -22,7 +23,8 @@ class MyReqRep : IMyReqRep {
             for (ids in 0 until documents.size()) {
                 val model = ModelRequisicoes()
                 model.apply {
-                    user = documents.documents[ids].get("UserNick").toString()
+                    user = auth?.displayName.toString()
+                    userId = documents.documents[ids].get("User").toString()
                     horario = documents.documents[ids].get("Horário").toString()
                     game = documents.documents[ids].data?.get("Jogo") as ArrayList<Int>
                     plataforma = documents.documents[ids].data?.get("Plataforma") as ArrayList<Int>

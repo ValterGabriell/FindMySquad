@@ -28,6 +28,7 @@ class TelaPrincipalRepository : ITelaPrincipalRepository {
                 val modelador = ModelRequisicoes()
                 modelador.apply {
                     user = it.documents[ids].data?.get("UserNick").toString()
+                    userId = it.documents[ids].data?.get("User").toString()
                     horario = it.documents[ids].data?.get("Horário").toString()
                     game = it.documents[ids].data?.get("Jogo") as ArrayList<Int>
                     plataforma = it.documents[ids].data?.get("Plataforma") as ArrayList<Int>

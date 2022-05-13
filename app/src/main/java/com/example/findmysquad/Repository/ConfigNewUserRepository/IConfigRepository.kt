@@ -8,6 +8,7 @@ import com.google.android.material.chip.ChipGroup
 interface IConfigRepository {
     suspend fun validateForm(
         et: EditText,
+        etNumero:EditText,
         chipGroup: ChipGroup,
         chipGroup2: ChipGroup,
         context: Context
