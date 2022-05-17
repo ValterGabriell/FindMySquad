@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">FindMySquad</string>
+    <string name="logintxt">Login</string>
+    <string name="pelase_login">Por favor, logue para continuar</string>
 </resources>
 
 

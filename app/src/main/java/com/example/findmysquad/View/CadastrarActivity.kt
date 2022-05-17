@@ -50,8 +50,4 @@ class CadastrarActivity : AppCompatActivity() {
             }
         }
     }
-
-    override fun onBackPressed() {
-
-    }
 }

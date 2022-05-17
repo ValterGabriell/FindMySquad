@@ -3,11 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/vgabr/AndroidStudioProjects/FindMySquad/AppFinal/app/src/main/res/drawable/btn_item_selector.xml" value="0.1675" />
+        <entry key="..\:/Users/vgabr/AndroidStudioProjects/FindMySquad/AppFinal/app/src/main/res/drawable/btn_no_press.xml" value="0.1675" />
+        <entry key="..\:/Users/vgabr/AndroidStudioProjects/FindMySquad/AppFinal/app/src/main/res/drawable/btn_press.xml" value="0.1675" />
+        <entry key="..\:/Users/vgabr/AndroidStudioProjects/FindMySquad/AppFinal/app/src/main/res/drawable/rounded_edittext.xml" value="0.1675" />
+        <entry key="..\:/Users/vgabr/AndroidStudioProjects/FindMySquad/AppFinal/app/src/main/res/drawable/rounded_edittext_nopress.xml" value="0.1675" />
+        <entry key="..\:/Users/vgabr/AndroidStudioProjects/FindMySquad/AppFinal/app/src/main/res/drawable/rounded_edittext_press.xml" value="0.1675" />
+        <entry key="..\:/Users/vgabr/AndroidStudioProjects/FindMySquad/AppFinal/app/src/main/res/drawable/selected_edit.xml" value="0.1675" />
+        <entry key="..\:/Users/vgabr/AndroidStudioProjects/FindMySquad/AppFinal/app/src/main/res/font/font_main.xml" value="0.23020833333333332" />
         <entry key="..\:/Users/vgabr/AndroidStudioProjects/FindMySquad/AppFinal/app/src/main/res/layout/activity_add_new_requisicao.xml" value="0.2" />
         <entry key="..\:/Users/vgabr/AndroidStudioProjects/FindMySquad/AppFinal/app/src/main/res/layout/activity_config.xml" value="0.25" />
         <entry key="..\:/Users/vgabr/AndroidStudioProjects/FindMySquad/AppFinal/app/src/main/res/layout/activity_edit_profile.xml" value="0.33" />
         <entry key="..\:/Users/vgabr/AndroidStudioProjects/FindMySquad/AppFinal/app/src/main/res/layout/activity_editar_requisicao.xml" value="0.25" />
-        <entry key="..\:/Users/vgabr/AndroidStudioProjects/FindMySquad/AppFinal/app/src/main/res/layout/activity_logar.xml" value="0.33" />
+        <entry key="..\:/Users/vgabr/AndroidStudioProjects/FindMySquad/AppFinal/app/src/main/res/layout/activity_logar.xml" value="0.25" />
         <entry key="..\:/Users/vgabr/AndroidStudioProjects/FindMySquad/AppFinal/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/vgabr/AndroidStudioProjects/FindMySquad/AppFinal/app/src/main/res/layout/activity_my_requicisoes.xml" value="0.2" />
         <entry key="..\:/Users/vgabr/AndroidStudioProjects/FindMySquad/AppFinal/app/src/main/res/layout/activity_tela_principal.xml" value="0.25" />

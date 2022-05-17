@@ -2,6 +2,7 @@ package com.example.findmysquad.View
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.findmysquad.ViewModel.LogarViewModel
@@ -21,6 +22,7 @@ class LogarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLogarBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         binding.btnLogar.setOnClickListener {
             logar()
