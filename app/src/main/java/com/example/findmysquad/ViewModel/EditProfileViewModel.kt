@@ -1,6 +1,8 @@
 package com.example.findmysquad.ViewModel
 
 import android.content.Context
+import android.net.Uri
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.lifecycle.MutableLiveData
@@ -17,7 +19,7 @@ class EditProfileViewModel(private val editProfileRepository: EditProfileReposit
         editTextEmail: EditText,
         img: ImageView
     ) {
-        editProfileRepository.recuperarDadosUsuario(editTextName, editTextEmail, img)
+        editProfileRepository.recuperarDadosUsuario(editTextName, editTextEmail,img)
     }
 
     suspend fun deletarConta(context: Context) {
@@ -36,6 +38,18 @@ class EditProfileViewModel(private val editProfileRepository: EditProfileReposit
 
     suspend fun abrirOTimerPickerEConfigurarAHora(context: Context){
         editProfileRepository.abrirOTimerPickerEConfigurarAHora(context)
+    }
+
+    suspend fun uparImgEscolhidaParaOBanco(filenamne:String, uri: Uri){
+        editProfileRepository.uparAImagemEscolhidaParaOBancoDeDados(filenamne, uri)
+    }
+
+    suspend fun receberFotoEPorNoBancoDeDados(){
+        editProfileRepository.baixaAFotoDoStorageAtualizaNoPerfilENoBancoDeDados()
+    }
+
+    fun clock(context: Context, button: Button) {
+        editProfileRepository.clock(context, button)
     }
 
 

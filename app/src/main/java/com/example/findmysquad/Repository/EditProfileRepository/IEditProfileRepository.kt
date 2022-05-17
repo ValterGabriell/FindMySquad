@@ -15,6 +15,8 @@ interface IEditProfileRepository {
         img: ImageView
     )
 
+    fun baixaAFotoDoStorageAtualizaNoPerfilENoBancoDeDados()
+
     suspend fun deletarConta(context: Context)
 
     suspend fun atualizarPerfil(

@@ -12,4 +12,10 @@
     <color name="azul">#027fe9</color>
     <color name="azulGay">#00caf8</color>
     <color name="lilasZin">#e0daf7</color>
+
+    <color name="azul1">#CAF0F8</color>
+    <color name="azul2">#90E0EF</color>
+    <color name="azul3">#00B4D8</color>
+    <color name="azul4">#0077B6</color>
+    <color name="azul5">#03045E</color>
 </resources>

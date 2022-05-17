@@ -1,26 +1,30 @@
 package com.example.findmysquad.Repository.AddRequisitionRepostiory
 
+import android.app.TimePickerDialog
 import android.content.Context
 import android.util.Log
-import androidx.core.view.children
+import android.widget.Button
+import android.widget.TimePicker
 import com.example.findmysquad.Model.Objects.FirebaseFeatures
 import com.example.findmysquad.Model.Objects.Methods
 import com.example.findmysquad.Model.Objects.Texts
-import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FieldValue
+import java.util.*
 
-class AddRequisitonRepository : IAddRepository {
+class AddRequisitonRepository : IAddRepository, TimePickerDialog.OnTimeSetListener {
     private var timerDate: String = ""
     private var fieldValue: String = ""
+    private var savedHour = 0
+    private var savedMinute = 0
     override fun addNewRequisicao(chipGroup: ChipGroup, chipGroup2: ChipGroup) {
         val data = hashMapOf(
-            "Jogo" to filterChip(chipGroup),
+            "Jogo" to Methods.filterChip(chipGroup),
             "Horário" to timerDate,
             "User" to FirebaseFeatures.getAuth().currentUser?.uid,
             "UserNick" to FirebaseFeatures.getAuth().currentUser?.displayName,
-            "Plataforma" to filterChip(chipGroup2),
+            "Plataforma" to Methods.filterChip(chipGroup2),
             "PhotoUri" to FirebaseFeatures.getAuth().currentUser?.photoUrl.toString(),
             "Email" to FirebaseFeatures.getAuth().currentUser?.email,
             "IdReq" to fieldValue
@@ -42,11 +46,6 @@ class AddRequisitonRepository : IAddRepository {
         FirebaseFeatures.getAuth().currentUser?.updateProfile(profileUpdate)
     }
 
-    private fun filterChip(chipGroup: ChipGroup): List<String> {
-        return chipGroup.children
-            .filter { (it as Chip).isChecked }
-            .map { (it as Chip).text.toString() }.toList()
-    }
 
     private fun salvar(data: HashMap<String, Any?>) {
         fieldValue = FieldValue.increment(1).toString()
@@ -70,7 +69,13 @@ class AddRequisitonRepository : IAddRepository {
 
     }
 
-    fun clock(context: Context) {
-        timerDate = Methods.configTimerPicker(context)
+    fun clock(context: Context, button: Button) {
+        Methods.clock(context, button,this)
+    }
+
+    override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
+        savedHour = hourOfDay
+        savedMinute = minute
+        timerDate = "$savedHour:$savedMinute"
     }
 }

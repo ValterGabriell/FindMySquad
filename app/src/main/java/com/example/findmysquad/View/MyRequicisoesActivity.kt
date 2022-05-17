@@ -28,9 +28,12 @@ class MyRequicisoesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMyRequicisoesBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+    }
+
+    override fun onStart() {
+        super.onStart()
         recuperarDadosDeUmUnicoUsuarioEConfigurarRecyclerView()
-
-
     }
 
 

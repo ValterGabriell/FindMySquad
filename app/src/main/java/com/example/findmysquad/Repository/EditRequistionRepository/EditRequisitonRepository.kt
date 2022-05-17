@@ -92,6 +92,6 @@ class EditRequisitonRepository : IEditRequisitionRepository {
     }
 
     fun clock(context: Context) {
-        timerDate = Methods.configTimerPicker(context)
+        //timerDate = Methods.configTimerPicker(context)
     }
 }

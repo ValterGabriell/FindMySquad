@@ -28,11 +28,11 @@ class AddUserActivity : AppCompatActivity() {
 
 
 
-        binding.btnHor.setOnClickListener {
-            CoroutineScope(Dispatchers.Main).launch {
-                model.abrirOTimerPickerEConfigurarAHora(this@AddUserActivity)
-            }
+
+        CoroutineScope(Dispatchers.Main).launch {
+            model.abrirOTimerPickerEConfigurarAHora(this@AddUserActivity, binding.btnHor)
         }
+
 
         /**
          * Método para recuperar a imagem

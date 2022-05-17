@@ -14,8 +14,6 @@ interface IConfigRepository {
         context: Context
     )
 
-    fun abrirOTimerPickerEConfigurarAHora(context: Context)
-
     fun uparAImagemEscolhidaParaOBancoDeDados(filename: String, uri: Uri)
 
     fun baixaAFotoDoStorageAtualizaNoPerfilENoBancoDeDados()

@@ -1,12 +1,10 @@
 package com.example.findmysquad.Repository.EditProfileRepository
 
+import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.view.children
 import com.example.findmysquad.Model.ModelRequisicoes
 import com.example.findmysquad.Model.Objects.FirebaseFeatures
@@ -21,13 +19,17 @@ import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.collections.HashMap
 
-class EditProfileRepository : IEditProfileRepository {
+class EditProfileRepository : IEditProfileRepository, TimePickerDialog.OnTimeSetListener {
 
     private val auth = FirebaseFeatures.getAuth().currentUser
     private var timerDate: String = ""
     private var nickname: String = ""
     private val imgRef = FirebaseFeatures.getStorage()
+    private var savedHour = 0
+    private var savedMinute = 0
 
 
     override suspend fun recuperarDadosUsuario(
@@ -44,6 +46,21 @@ class EditProfileRepository : IEditProfileRepository {
         CoroutineScope(Dispatchers.Main).launch {
             Picasso.get().load(urlFoto).into(img)
         }
+    }
+
+    override fun baixaAFotoDoStorageAtualizaNoPerfilENoBancoDeDados() {
+        FirebaseFeatures.getStorage()
+            .child("images/${FirebaseFeatures.getAuth().currentUser?.uid}")
+            .downloadUrl.addOnSuccessListener { uri ->
+                FirebaseFeatures.getDatabase().collection("User")
+                    .document(FirebaseFeatures.getAuth().currentUser?.uid.toString())
+                    .update("photo", uri.toString())
+
+                val profileUpdate = userProfileChangeRequest {
+                    photoUri = uri
+                }
+                FirebaseFeatures.getAuth().currentUser?.updateProfile(profileUpdate)
+            }
     }
 
     override suspend fun uparAImagemEscolhidaParaOBancoDeDados(filename: String, uri: Uri) {
@@ -66,20 +83,13 @@ class EditProfileRepository : IEditProfileRepository {
     }
 
     override fun abrirOTimerPickerEConfigurarAHora(context: Context) {
-        timerDate = Methods.configTimerPicker(context)
+        //timerDate = Methods.configTimerPicker(context)
     }
 
     private fun pegarOTextoDoEditTextNicknameEPorComoNickDoUsuario(et: EditText): String {
         nickname = et.text.toString()
         return nickname
     }
-
-    private fun filtrarOQueFoiClicadoNoChipGroup(chipGroup: ChipGroup): List<String> {
-        return chipGroup.children
-            .filter { (it as Chip).isChecked }
-            .map { (it as Chip).text.toString() }.toList()
-    }
-
 
     override suspend fun atualizarPerfil(
         et: EditText,
@@ -92,8 +102,8 @@ class EditProfileRepository : IEditProfileRepository {
             val profileMap = hashMapOf(
                 "nickname" to pegarOTextoDoEditTextNicknameEPorComoNickDoUsuario(et),
                 "horario" to timerDate,
-                "lista-jogos" to filtrarOQueFoiClicadoNoChipGroup(chipGroup),
-                "lista-plataformas" to filtrarOQueFoiClicadoNoChipGroup(chipGroup2),
+                "lista-jogos" to Methods.filterChip(chipGroup),
+                "lista-plataformas" to Methods.filterChip(chipGroup2),
                 "userId" to auth?.uid.toString(),
                 "email" to auth?.email.toString(),
                 "photo" to ""
@@ -106,9 +116,9 @@ class EditProfileRepository : IEditProfileRepository {
         }
     }
 
-    private fun atualizarColecaoNoFirebase(et: EditText, context: Context, profileMap: Any) {
+    private fun atualizarColecaoNoFirebase(et: EditText, context: Context, profileMap: HashMap<String, Any>) {
         FirebaseFeatures.getDatabase().collection("User")
-            .document(FirebaseFeatures.getAuth().currentUser?.uid.toString()).set(profileMap)
+            .document(FirebaseFeatures.getAuth().currentUser?.uid.toString()).update(profileMap)
             .addOnSuccessListener {
                 context.startActivity(Intent(context, TelaPrincipalActivity::class.java))
             }.addOnFailureListener {
@@ -123,6 +133,16 @@ class EditProfileRepository : IEditProfileRepository {
             displayName = pegarOTextoDoEditTextNicknameEPorComoNickDoUsuario(et)
         }
         FirebaseFeatures.getAuth().currentUser?.updateProfile(profileUpdate)
+    }
+
+    fun clock(context: Context, button: Button) {
+        Methods.clock(context, button,this)
+    }
+
+    override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
+        savedHour = hourOfDay
+        savedMinute = minute
+        timerDate = "$savedHour:$savedMinute"
     }
 
 

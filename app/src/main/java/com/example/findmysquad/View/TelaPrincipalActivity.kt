@@ -35,6 +35,11 @@ class TelaPrincipalActivity : AppCompatActivity() {
         binding = ActivityTelaPrincipalBinding.inflate(layoutInflater)
         setContentView(binding.root)
         btnFab()
+
+    }
+
+    override fun onStart() {
+        super.onStart()
         configRecycler()
     }
 
@@ -45,6 +50,7 @@ class TelaPrincipalActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.Main).launch {
             model.listaRequisicoes.observe(this@TelaPrincipalActivity) {
                 listaRequisicoesMain = it
+                listaRequisicoesMain.reverse()
                 adapter = RecyclerMainAdapter(listaRequisicoesMain)
                 binding.recyclerMain.adapter = adapter
                 binding.recyclerMain.layoutManager = LinearLayoutManager(this@TelaPrincipalActivity)

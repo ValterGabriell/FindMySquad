@@ -1,16 +1,24 @@
 package com.example.findmysquad.View
 
+import android.app.TimePickerDialog
+import android.net.Uri
 import android.os.Bundle
+import android.widget.TimePicker
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.example.findmysquad.Model.Objects.FirebaseFeatures
 import com.example.findmysquad.ViewModel.EditProfileViewModel
 import com.example.findmysquad.databinding.ActivityEditProfileBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.koin.android.ext.android.inject
 
-class EditProfileActivity : AppCompatActivity() {
-
+class EditProfileActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener {
+    private var savedHour = 0
+    private var savedMinute = 0
     private lateinit var binding: ActivityEditProfileBinding
     private val model by inject<EditProfileViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,10 +31,16 @@ class EditProfileActivity : AppCompatActivity() {
             model.recuperarDadosUsuario(binding.etNick, binding.etEmailProfile, binding.img)
         }
 
+
+
         binding.btnHor.setOnClickListener {
             CoroutineScope(Dispatchers.Main).launch {
                 model.abrirOTimerPickerEConfigurarAHora(this@EditProfileActivity)
             }
+        }
+
+        CoroutineScope(Dispatchers.Main).launch {
+            model.clock(this@EditProfileActivity, binding.btnHor)
         }
 
         binding.btnConfirm.setOnClickListener {
@@ -49,6 +63,55 @@ class EditProfileActivity : AppCompatActivity() {
 
         }
 
+        uparImageParaDB()
 
+    }
+
+    override fun onStop() {
+        super.onStop()
+        CoroutineScope(Dispatchers.IO).launch {
+            model.receberFotoEPorNoBancoDeDados()
+        }
+
+    }
+
+    private fun uparImageParaDB() {
+        val getImageFromGalley = registerForActivityResult(
+            ActivityResultContracts.GetContent()
+        ) { uri ->
+            binding.img.setImageURI(uri)
+            atualizarFotoParaStorage(FirebaseFeatures.getAuth().currentUser?.uid.toString(), uri!!)
+        }
+        binding.img.setOnClickListener {
+            getImageFromGalley.launch("image/*")
+        }
+    }
+
+    private fun atualizarFotoParaStorage(toString: String, uri: Uri) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                model.uparImgEscolhidaParaOBanco(toString, uri)
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        this@EditProfileActivity,
+                        "Sucesso ao atualizar a foto",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        this@EditProfileActivity,
+                        e.message,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
+    }
+
+    override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
+        savedHour = hourOfDay
+        savedMinute = minute
     }
 }

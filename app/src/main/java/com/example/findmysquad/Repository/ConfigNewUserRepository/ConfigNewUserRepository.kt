@@ -1,9 +1,12 @@
 package com.example.findmysquad.Repository.ConfigNewUserRepository
 
+import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.widget.Button
 import android.widget.EditText
+import android.widget.TimePicker
 import android.widget.Toast
 import androidx.core.view.children
 import com.example.findmysquad.Model.Objects.FirebaseFeatures
@@ -13,14 +16,18 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import java.util.*
 
-class ConfigNewUserRepository : IConfigRepository {
+class ConfigNewUserRepository : IConfigRepository, TimePickerDialog.OnTimeSetListener  {
 
     private var timerDate: String = ""
     private var nickname: String = ""
     private var numero: String = ""
     private val imgRef = FirebaseFeatures.getStorage()
     private val auth = FirebaseFeatures.getAuth().currentUser
+    private var savedHour = 0
+    private var savedMinute = 0
+
 
     override suspend fun validateForm(
         et: EditText,
@@ -33,8 +40,8 @@ class ConfigNewUserRepository : IConfigRepository {
             val profileMap = hashMapOf(
                 "nickname" to pegarOTextoDoEditTextNicknameEPorComoNickDoUsuario(et),
                 "horario" to timerDate,
-                "lista-jogos" to filtrarOQueFoiClicadoNoChipGroup(chipGroup),
-                "lista-plataformas" to filtrarOQueFoiClicadoNoChipGroup(chipGroup2),
+                "lista-jogos" to Methods.filterChip(chipGroup),
+                "lista-plataformas" to Methods.filterChip(chipGroup2),
                 "userId" to auth?.uid.toString(),
                 "email" to auth?.email.toString(),
                 "numeroCelular" to pegarOTextoDoEditTextNicknameEPorComoNumeroDoUsuario(etNumero)
@@ -63,16 +70,8 @@ class ConfigNewUserRepository : IConfigRepository {
         val profileUpdate = userProfileChangeRequest {
             displayName = pegarOTextoDoEditTextNicknameEPorComoNickDoUsuario(et)
         }
-
-
-
         FirebaseFeatures.getAuth().currentUser?.updateProfile(profileUpdate)
     }
-
-    override fun abrirOTimerPickerEConfigurarAHora(context: Context) {
-        timerDate = Methods.configTimerPicker(context)
-    }
-
 
     override fun uparAImagemEscolhidaParaOBancoDeDados(filename: String, uri: Uri) {
         imgRef.child("images/$filename").putFile(uri)
@@ -104,10 +103,15 @@ class ConfigNewUserRepository : IConfigRepository {
         return numero
     }
 
-    private fun filtrarOQueFoiClicadoNoChipGroup(chipGroup: ChipGroup): List<String> {
-        return chipGroup.children
-            .filter { (it as Chip).isChecked }
-            .map { (it as Chip).text.toString() }.toList()
+    fun clock(context: Context, button: Button){
+        Methods.clock(context, button,this)
     }
+
+    override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
+        savedHour = hourOfDay
+        savedMinute = minute
+        timerDate = "$savedHour:$savedMinute"
+    }
+
 
 }
