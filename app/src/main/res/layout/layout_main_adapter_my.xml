@@ -10,72 +10,78 @@
     android:padding="8dp"
     app:cardCornerRadius="24dp">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageView2"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
             app:civ_border_color="@color/azul5"
-            app:civ_border_width="1dp"
-            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+            app:civ_border_width="1dp" />
 
-        <TextView
-            android:id="@+id/txtUsername"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/imageView2"
-            android:layout_marginLeft="16dp"
-            android:layout_marginBottom="16dp"
-            android:fontFamily="@font/koulen_regular"
-            android:text="TextView"
-            android:textColor="@color/browser_actions_title_color"
-            android:textSize="14sp"
-            android:textStyle="bold" />
+            android:layout_marginLeft="32dp"
+            android:orientation="vertical"
+            android:padding="4dp">
 
-        <TextView
-            android:id="@+id/txtGame"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="150dp"
-            android:fontFamily="@font/koulen_regular"
-            android:text="TextView"
-            android:textColor="@color/browser_actions_title_color"
-            android:textSize="16sp" />
+            <TextView
+                android:id="@+id/txtUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/koulen_regular"
+                android:text="TextView"
+                android:textColor="@color/browser_actions_title_color"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/txtPlataform"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@id/txtGame"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="155dp"
-            android:fontFamily="@font/koulen_regular"
-            android:text="TextView"
-            android:textColor="@color/browser_actions_title_color"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/txtGame"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/koulen_regular"
+                android:text="TextView"
+                android:textColor="@color/browser_actions_title_color"
+                android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/txtHorario"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignRight="@id/txtUsername"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="75dp"
-            android:layout_marginRight="155dp"
-            android:fontFamily="@font/koulen_regular"
-            android:text="TextView"
-            android:textColor="@color/browser_actions_title_color" />
+            <TextView
+                android:id="@+id/txtPlataform"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@id/txtGame"
+                android:layout_alignParentEnd="true"
+                android:fontFamily="@font/koulen_regular"
+                android:text="TextView"
+                android:textColor="@color/browser_actions_title_color"
+                android:textSize="14sp" />
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/txtHorario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/koulen_regular"
+                android:text="TextView"
+                android:textColor="@color/browser_actions_title_color"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgWhatsapp"
+            android:layout_width="65dp"
+            android:layout_height="45dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="64dp"
+            app:srcCompat="@drawable/whatsapp_icon" />
+
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

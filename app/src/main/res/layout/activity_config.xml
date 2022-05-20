@@ -11,6 +11,19 @@
         tools:context=".View.AddUserActivity">
 
 
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/koulen_regular"
+            android:text="Selecione os jogos que voce joga"
+            android:textColor="@color/azul5"
+            app:layout_constraintEnd_toEndOf="@+id/chipGroup"
+            app:layout_constraintHorizontal_bias="0.294"
+            app:layout_constraintStart_toStartOf="@+id/chipGroup"
+            app:layout_constraintTop_toBottomOf="@+id/chipGroup2" />
+
         <EditText
             android:id="@+id/etNick"
             android:layout_width="0dp"
@@ -67,7 +80,7 @@
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chipGroup2">
+            app:layout_constraintTop_toBottomOf="@+id/textView3">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipR6"
@@ -108,8 +121,9 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnHor">
+            app:layout_constraintTop_toBottomOf="@+id/textView">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipPC"
@@ -142,6 +156,19 @@
             app:layout_constraintHorizontal_bias="0.506"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/koulen_regular"
+            android:text="Selecione as plataformas que voce joga"
+            android:textColor="@color/azul5"
+            app:layout_constraintEnd_toEndOf="@+id/chipGroup2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/chipGroup2"
+            app:layout_constraintTop_toBottomOf="@+id/btnHor" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

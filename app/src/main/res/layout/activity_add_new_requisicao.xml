@@ -8,6 +8,14 @@
     android:padding="16dp"
     tools:context=".View.AddNewRequisicao">
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/koulen_regular"
+        android:text="Selecione o jogo que voce joga"
+        android:textColor="@color/azul5" />
+
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGame"
         android:layout_width="match_parent"
@@ -37,7 +45,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Valorant" />
+
     </com.google.android.material.chip.ChipGroup>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/koulen_regular"
+        android:text="Selecione o horario que voce joga"
+        android:textColor="@color/azul5" />
 
     <Button
         android:id="@+id/btnHor"
@@ -45,6 +62,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Selecionar horários de jogo" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/koulen_regular"
+        android:text="Selecione a plataforma"
+        android:textColor="@color/azul5" />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipPlata"

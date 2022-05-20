@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.findmysquad.Model.Objects.FirebaseFeatures
 import com.example.findmysquad.ViewModel.ConfigurarUserViewModel
 import com.example.findmysquad.databinding.ActivityConfigBinding
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -62,7 +63,7 @@ class AddUserActivity : AppCompatActivity() {
         val getImage = registerForActivityResult(
             ActivityResultContracts.GetContent(),
             ActivityResultCallback {
-                binding.img.setImageURI(it)
+                Picasso.get().load(it).into(binding.img)
                 enviarFotoParaOStorage(FirebaseFeatures.getAuth().currentUser?.uid.toString(), it!!)
             }
         )
@@ -75,13 +76,6 @@ class AddUserActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 model.enviarFotoParaOStorage(filename, uri)
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(
-                        this@AddUserActivity,
-                        "Sucesso ao enviar a foto",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
                     Toast.makeText(this@AddUserActivity, e.message, Toast.LENGTH_LONG).show()
