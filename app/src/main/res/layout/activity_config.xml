@@ -22,6 +22,7 @@
             android:hint="Nicknane"
             android:inputType="textPersonName"
             android:minHeight="48dp"
+            android:padding="16dp"
             android:textColorHint="@color/purple_500"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -38,11 +39,12 @@
             android:hint="Numero Celular"
             android:inputType="phone"
             android:minHeight="48dp"
+            android:padding="16dp"
             android:textColorHint="@color/purple_500"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chipGroup2" />
+            app:layout_constraintTop_toBottomOf="@+id/etNick" />
 
         <ImageView
             android:id="@+id/img"
@@ -61,12 +63,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
+            android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.549"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etNick">
+            app:layout_constraintTop_toBottomOf="@+id/chipGroup2">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipR6"
@@ -78,16 +79,16 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipCS"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:text="Counter Strike" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipVaralotn"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:text="Valorant" />
         </com.google.android.material.chip.ChipGroup>
 
@@ -95,40 +96,40 @@
             android:id="@+id/btnHor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:padding="8dp"
             android:text="Selecionar horários de jogo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
+            app:layout_constraintTop_toBottomOf="@+id/etNumber" />
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chipGroup2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnHor">
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipPC"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:text="PC" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chiPlay"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:text="Playstation" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipXbox"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
                 android:text="Xbox" />
         </com.google.android.material.chip.ChipGroup>
 
@@ -140,7 +141,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.506"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etNumber" />
+            app:layout_constraintTop_toBottomOf="@+id/chipGroup" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
