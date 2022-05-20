@@ -1,8 +1,11 @@
 package com.example.findmysquad.Repository.EditRequistionRepository
 
+import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import android.widget.Button
+import android.widget.TimePicker
 import android.widget.Toast
 import androidx.core.view.children
 import com.example.findmysquad.Model.Objects.FirebaseFeatures
@@ -14,9 +17,11 @@ import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FieldValue
 
-class EditRequisitonRepository : IEditRequisitionRepository {
+class EditRequisitonRepository : IEditRequisitionRepository, TimePickerDialog.OnTimeSetListener {
     private var timerDate: String = ""
     private var fieldValue: String = ""
+    private var savedHour = 0
+    private var savedMinute = 0
     override fun updateRequisicao(chipGroup: ChipGroup, chipGroup2: ChipGroup, idField: String) {
         val data = hashMapOf(
             "Jogo" to filterChip(chipGroup),
@@ -91,7 +96,15 @@ class EditRequisitonRepository : IEditRequisitionRepository {
 
     }
 
-    fun clock(context: Context) {
-        //timerDate = Methods.configTimerPicker(context)
+    fun clock(
+        context: Context, button: Button
+    ) {
+        Methods.clock(context, button, this)
+    }
+
+    override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
+        savedHour = hourOfDay
+        savedMinute = minute
+        timerDate = "$savedHour:$savedMinute"
     }
 }

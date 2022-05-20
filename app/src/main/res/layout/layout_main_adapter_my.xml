@@ -15,16 +15,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/imageView2"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            app:civ_border_width="1dp"
-            app:civ_border_color="@color/azul5"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
+            app:civ_border_color="@color/azul5"
+            app:civ_border_width="1dp"
             tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
         <TextView
@@ -45,8 +44,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="96dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="150dp"
             android:fontFamily="@font/koulen_regular"
             android:text="TextView"
             android:textColor="@color/browser_actions_title_color"
@@ -58,8 +57,8 @@
             android:layout_height="wrap_content"
             android:layout_alignEnd="@id/txtGame"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="28dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="155dp"
             android:fontFamily="@font/koulen_regular"
             android:text="TextView"
             android:textColor="@color/browser_actions_title_color"
@@ -71,8 +70,8 @@
             android:layout_height="wrap_content"
             android:layout_alignRight="@id/txtUsername"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="65dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginTop="75dp"
+            android:layout_marginRight="155dp"
             android:fontFamily="@font/koulen_regular"
             android:text="TextView"
             android:textColor="@color/browser_actions_title_color" />

@@ -2,9 +2,10 @@ package com.example.findmysquad.View
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.WindowManager
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.findmysquad.R
 import com.example.findmysquad.ViewModel.LogarViewModel
 import com.example.findmysquad.databinding.ActivityLogarBinding
 import kotlinx.coroutines.CoroutineScope
@@ -25,6 +26,7 @@ class LogarActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         binding.btnLogar.setOnClickListener {
+            binding.progressBar4.visibility = View.VISIBLE
             logar()
         }
 
@@ -39,7 +41,7 @@ class LogarActivity : AppCompatActivity() {
 
         if (email.isNotEmpty() && senha.isNotEmpty()) {
             CoroutineScope(Dispatchers.IO).launch {
-                model.logarUsuário(email, senha, this@LogarActivity)
+                model.logarUsuário(email, senha, this@LogarActivity, binding.progressBar4)
             }
         } else {
             CoroutineScope(Dispatchers.Main).launch {
@@ -56,7 +58,6 @@ class LogarActivity : AppCompatActivity() {
     override fun onBackPressed() {
 
     }
-
 
 
 }

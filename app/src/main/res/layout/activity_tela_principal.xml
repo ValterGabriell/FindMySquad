@@ -54,12 +54,4 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/layout_main_adapter" />
 
-
-        <include
-            android:id="@+id/emptyContainer"
-            layout="@layout/layout_empty_list"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

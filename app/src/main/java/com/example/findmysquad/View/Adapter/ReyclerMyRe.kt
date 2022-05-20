@@ -1,5 +1,6 @@
 package com.example.findmysquad.View.Adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,9 +15,11 @@ class ReyclerMyRe(private val listaR: ArrayList<ModelRequisicoes>) :
     RecyclerView.Adapter<ReyclerMyRe.MyViewHolderR>() {
 
     inner class MyViewHolderR(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        @SuppressLint("SetTextI18n")
         fun bind(modelRequisicoes: ModelRequisicoes) {
             itemView.findViewById<TextView>(R.id.txtGame).text = modelRequisicoes.game.toString()
-            itemView.findViewById<TextView>(R.id.txtHorario).text = modelRequisicoes.horario
+            itemView.findViewById<TextView>(R.id.txtHorario).text =
+                "Horário de partida: ${modelRequisicoes.horario}"
             itemView.findViewById<TextView>(R.id.txtPlataform).text =
                 modelRequisicoes.plataforma.toString()
             itemView.findViewById<TextView>(R.id.txtUsername).text = modelRequisicoes.user
@@ -29,7 +32,8 @@ class ReyclerMyRe(private val listaR: ArrayList<ModelRequisicoes>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolderR {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.layout_main_adapter_my, parent, false)
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.layout_main_adapter_my, parent, false)
         return MyViewHolderR(view)
     }
 

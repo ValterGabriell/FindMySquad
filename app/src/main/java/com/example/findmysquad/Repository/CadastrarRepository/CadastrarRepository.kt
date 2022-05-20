@@ -2,6 +2,8 @@ package com.example.findmysquad.Repository.CadastrarRepository
 
 import android.content.Context
 import android.content.Intent
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.example.findmysquad.Model.Objects.FirebaseFeatures
 import com.example.findmysquad.Model.Objects.Texts
@@ -13,10 +15,11 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 
 class CadastrarRepository : ICadastrarRepository {
 
-    override fun cadastrarUsuario(email: String, senha: String, context: Context) {
+    override fun cadastrarUsuario(email: String, senha: String, context: Context, progressBar: ProgressBar) {
         FirebaseFeatures.getAuth().createUserWithEmailAndPassword(email, senha)
             .addOnSuccessListener {
                 changeActivity(context)
+                progressBar.visibility = View.GONE
             }.addOnFailureListener { erro ->
                 val msgErro = when (erro) {
                     is FirebaseAuthWeakPasswordException -> Texts.SENHA_INVALIDA

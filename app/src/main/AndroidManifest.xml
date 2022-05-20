@@ -30,6 +30,7 @@
             android:exported="true" />
         <activity
             android:name=".View.LogarActivity"
+            android:theme="@style/Theme.FindMySquad2"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,6 +43,7 @@
             android:exported="false" />
         <activity
             android:name=".View.CadastrarActivity"
+            android:theme="@style/Theme.FindMySquad2"
             android:exported="true" />
     </application>
 

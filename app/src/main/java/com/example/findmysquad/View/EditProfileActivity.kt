@@ -17,9 +17,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.koin.android.ext.android.inject
 
-class EditProfileActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener {
-    private var savedHour = 0
-    private var savedMinute = 0
+class EditProfileActivity : AppCompatActivity(){
     private lateinit var binding: ActivityEditProfileBinding
     private val model by inject<EditProfileViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -109,8 +107,5 @@ class EditProfileActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListe
         }
     }
 
-    override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-        savedHour = hourOfDay
-        savedMinute = minute
-    }
+
 }
