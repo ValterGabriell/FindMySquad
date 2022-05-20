@@ -29,7 +29,7 @@ class ReyclerMyRe(private val listaR: ArrayList<ModelRequisicoes>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolderR {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.layout_main_adapter, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.layout_main_adapter_my, parent, false)
         return MyViewHolderR(view)
     }
 

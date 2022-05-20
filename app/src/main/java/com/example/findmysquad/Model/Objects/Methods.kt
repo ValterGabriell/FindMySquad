@@ -27,8 +27,6 @@ object Methods {
             val hora = calendar.get(Calendar.HOUR_OF_DAY)
             val minutes = calendar.get(Calendar.MINUTE)
             TimePickerDialog(context, timePickerDialog, hora, minutes, true).show()
-            Toast.makeText(context, "Horário definido para $hora:$minutes", Toast.LENGTH_LONG)
-                .show()
         }
     }
 }

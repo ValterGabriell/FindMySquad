@@ -7,12 +7,14 @@ import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TimePicker
+import android.widget.Toast
 import com.example.findmysquad.Model.Objects.FirebaseFeatures
 import com.example.findmysquad.Model.Objects.Methods
 import com.example.findmysquad.Model.Objects.Texts
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FieldValue
+import kotlinx.coroutines.coroutineScope
 import java.util.*
 
 class AddRequisitonRepository : IAddRepository, TimePickerDialog.OnTimeSetListener {
@@ -51,7 +53,6 @@ class AddRequisitonRepository : IAddRepository, TimePickerDialog.OnTimeSetListen
 
     private fun salvar(data: HashMap<String, Any?>,progressBar: ProgressBar) {
         fieldValue = FieldValue.increment(1).toString()
-        progressBar.visibility = View.VISIBLE
         FirebaseFeatures.getDatabase().collection(Texts.REQUISICAO_NAME)
             .document(FirebaseFeatures.getAuth().currentUser?.uid.toString())
             .collection(Texts.LISTA_REQUISICAO_NAME).document(fieldValue).set(data).addOnSuccessListener {

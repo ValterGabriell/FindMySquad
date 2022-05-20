@@ -8,6 +8,16 @@
     tools:context=".View.TelaPrincipalActivity">
 
 
+    <TextView
+        android:id="@+id/txtEmpty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Parece que ninguem publicou nada ainda"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/shimmer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.facebook.shimmer.ShimmerFrameLayout
         android:id="@+id/shimmer"
@@ -43,4 +53,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/layout_main_adapter" />
+
+
+        <include
+            android:id="@+id/emptyContainer"
+            layout="@layout/layout_empty_list"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

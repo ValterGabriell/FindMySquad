@@ -77,14 +77,6 @@
             android:text="TextView"
             android:textColor="@color/browser_actions_title_color" />
 
-        <ImageView
-            android:id="@+id/imgWhatsapp"
-            android:layout_width="65dp"
-            android:layout_height="45dp"
-            android:layout_alignTop="@id/txtHorario"
-            android:layout_alignParentRight="true"
-            android:layout_marginTop="25dp"
-            app:srcCompat="@drawable/whatsapp_icon" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

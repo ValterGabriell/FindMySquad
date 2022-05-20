@@ -1,6 +1,7 @@
 package com.example.findmysquad.View
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.findmysquad.ViewModel.AddRequisitonViewModel
 import com.example.findmysquad.databinding.ActivityAddNewRequisicaoBinding
@@ -29,6 +30,7 @@ class AddNewRequisicao : AppCompatActivity() {
         CoroutineScope(Dispatchers.Main).launch {
             model.clock(this@AddNewRequisicao, binding.btnHor)
             binding.btnEnviar.setOnClickListener {
+                binding.progressBar.visibility = View.VISIBLE
                 CoroutineScope(Dispatchers.IO).launch {
                     model.addNewRequisicao(binding.chipGame, binding.chipPlata, binding.progressBar)
                     finish()

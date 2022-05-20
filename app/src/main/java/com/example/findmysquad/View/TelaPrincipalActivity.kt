@@ -58,6 +58,7 @@ class TelaPrincipalActivity : AppCompatActivity() {
             model.listaRequisicoes.observe(this@TelaPrincipalActivity) {
                 listaRequisicoesMain = it
                 listaRequisicoesMain.reverse()
+
                 binding.shimmer.apply {
                     this.stopShimmerAnimation()
                     visibility = View.GONE

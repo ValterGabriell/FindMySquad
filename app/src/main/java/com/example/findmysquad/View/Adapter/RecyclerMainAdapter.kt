@@ -34,7 +34,7 @@ class RecyclerMainAdapter(private val list: ArrayList<ModelRequisicoes>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.onBind(list[position])
-        holder.itemView.setOnClickListener {
+        holder.itemView.findViewById<ImageView>(R.id.imgWhatsapp).setOnClickListener {
             onItemClick?.invoke(position, list[position].userId)
         }
     }
