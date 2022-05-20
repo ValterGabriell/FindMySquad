@@ -19,6 +19,10 @@ class AddNewRequisicao : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddNewRequisicaoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.apply {
+            title = "Adicionar requisição"
+            this.setDisplayHomeAsUpEnabled(true)
+        }
 
 
 
@@ -26,7 +30,7 @@ class AddNewRequisicao : AppCompatActivity() {
             model.clock(this@AddNewRequisicao, binding.btnHor)
             binding.btnEnviar.setOnClickListener {
                 CoroutineScope(Dispatchers.IO).launch {
-                    model.addNewRequisicao(binding.chipGame, binding.chipPlata)
+                    model.addNewRequisicao(binding.chipGame, binding.chipPlata, binding.progressBar)
                     finish()
                 }
             }

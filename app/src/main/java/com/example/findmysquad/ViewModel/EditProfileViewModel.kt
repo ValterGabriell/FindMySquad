@@ -5,6 +5,7 @@ import android.net.Uri
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.ProgressBar
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.findmysquad.Model.ModelRequisicoes
@@ -17,9 +18,10 @@ class EditProfileViewModel(private val editProfileRepository: EditProfileReposit
     suspend fun recuperarDadosUsuario(
         editTextName: EditText,
         editTextEmail: EditText,
-        img: ImageView
+        img: ImageView,
+        progressBar: ProgressBar
     ) {
-        editProfileRepository.recuperarDadosUsuario(editTextName, editTextEmail,img)
+        editProfileRepository.recuperarDadosUsuario(editTextName, editTextEmail,img,progressBar)
     }
 
     suspend fun deletarConta(context: Context) {
@@ -36,9 +38,6 @@ class EditProfileViewModel(private val editProfileRepository: EditProfileReposit
         editProfileRepository.atualizarPerfil(et, etEmail,chipGroup, chipGroup2, context)
     }
 
-    suspend fun abrirOTimerPickerEConfigurarAHora(context: Context){
-        editProfileRepository.abrirOTimerPickerEConfigurarAHora(context)
-    }
 
     suspend fun uparImgEscolhidaParaOBanco(filenamne:String, uri: Uri){
         editProfileRepository.uparAImagemEscolhidaParaOBancoDeDados(filenamne, uri)

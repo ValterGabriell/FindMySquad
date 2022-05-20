@@ -3,6 +3,7 @@ package com.example.findmysquad.View
 import android.app.TimePickerDialog
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -25,18 +26,16 @@ class EditProfileActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListe
         super.onCreate(savedInstanceState)
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
-        CoroutineScope(Dispatchers.IO).launch {
-            model.recuperarDadosUsuario(binding.etNick, binding.etEmailProfile, binding.img)
+        supportActionBar?.apply {
+            title = "Editar Perfil"
+            this.setDisplayHomeAsUpEnabled(true)
         }
 
 
 
-        binding.btnHor.setOnClickListener {
-            CoroutineScope(Dispatchers.Main).launch {
-                model.abrirOTimerPickerEConfigurarAHora(this@EditProfileActivity)
-            }
+        CoroutineScope(Dispatchers.IO).launch {
+            binding.progressBar2.visibility = View.VISIBLE
+            model.recuperarDadosUsuario(binding.etNick, binding.etEmailProfile, binding.img, binding.progressBar2)
         }
 
         CoroutineScope(Dispatchers.Main).launch {

@@ -15,12 +15,15 @@
             android:exported="false" />
         <activity
             android:name=".View.EditProfileActivity"
+            android:parentActivityName=".View.MyRequicisoesActivity"
             android:exported="false" />
         <activity
             android:name=".View.MyRequicisoesActivity"
+            android:parentActivityName=".View.TelaPrincipalActivity"
             android:exported="false" />
         <activity
             android:name=".View.AddNewRequisicao"
+            android:parentActivityName=".View.TelaPrincipalActivity"
             android:exported="false" />
         <activity
             android:name=".View.AddUserActivity"

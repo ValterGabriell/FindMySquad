@@ -6,10 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".View.MyRequicisoesActivity">
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+        <include layout="@layout/layout_main_adapter_shimmer" />
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerMyRe"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        tools:listitem="@layout/layout_main_adapter"
+        android:layoutAnimation="@anim/layout_animation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

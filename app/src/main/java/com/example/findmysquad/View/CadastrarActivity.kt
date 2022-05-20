@@ -23,7 +23,7 @@ class CadastrarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        supportActionBar?.hide()
 
         binding.btnCadastrar.setOnClickListener {
             cadastrarUsuário()

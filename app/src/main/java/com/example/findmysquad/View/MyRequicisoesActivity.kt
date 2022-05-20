@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.findmysquad.Model.ModelRequisicoes
@@ -29,6 +30,18 @@ class MyRequicisoesActivity : AppCompatActivity() {
         binding = ActivityMyRequicisoesBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.recyclerMyRe.visibility = View.GONE
+        binding.shimmer.apply {
+            visibility = View.VISIBLE
+            this.startShimmerAnimation()
+        }
+
+
+
+        supportActionBar?.apply {
+            title = "Minhas Requisições"
+            this.setDisplayHomeAsUpEnabled(true)
+        }
     }
 
     override fun onStart() {
@@ -44,6 +57,13 @@ class MyRequicisoesActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.Main).launch {
             model.listaObserve.observe(this@MyRequicisoesActivity) {
                 lista = it
+
+                binding.recyclerMyRe.visibility = View.VISIBLE
+                binding.shimmer.apply {
+                    visibility = View.GONE
+                    this.stopShimmerAnimation()
+                }
+
                 adapter = ReyclerMyRe(lista)
                 binding.recyclerMyRe.adapter = adapter
                 binding.recyclerMyRe.layoutManager = LinearLayoutManager(this@MyRequicisoesActivity)

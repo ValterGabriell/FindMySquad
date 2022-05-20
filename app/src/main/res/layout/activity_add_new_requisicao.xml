@@ -5,12 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".View.AddNewRequisicao">
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="16dp"
+        android:padding="8dp"
         app:singleSelection="true">
 
         <com.google.android.material.chip.Chip
@@ -46,6 +50,8 @@
         android:id="@+id/chipPlata"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:padding="8dp"
         app:singleSelection="true">
 
         <com.google.android.material.chip.Chip
@@ -54,6 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checkable="true"
+            android:gravity="center_vertical"
             android:text="PC" />
 
         <com.google.android.material.chip.Chip
@@ -77,5 +84,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Criar Requisicao" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
 
 </LinearLayout>

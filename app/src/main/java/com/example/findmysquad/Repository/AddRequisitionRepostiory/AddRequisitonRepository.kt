@@ -3,7 +3,9 @@ package com.example.findmysquad.Repository.AddRequisitionRepostiory
 import android.app.TimePickerDialog
 import android.content.Context
 import android.util.Log
+import android.view.View
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TimePicker
 import com.example.findmysquad.Model.Objects.FirebaseFeatures
 import com.example.findmysquad.Model.Objects.Methods
@@ -18,7 +20,7 @@ class AddRequisitonRepository : IAddRepository, TimePickerDialog.OnTimeSetListen
     private var fieldValue: String = ""
     private var savedHour = 0
     private var savedMinute = 0
-    override fun addNewRequisicao(chipGroup: ChipGroup, chipGroup2: ChipGroup) {
+    override fun addNewRequisicao(chipGroup: ChipGroup, chipGroup2: ChipGroup, progressBar: ProgressBar) {
         val data = hashMapOf(
             "Jogo" to Methods.filterChip(chipGroup),
             "Horário" to timerDate,
@@ -29,7 +31,7 @@ class AddRequisitonRepository : IAddRepository, TimePickerDialog.OnTimeSetListen
             "Email" to FirebaseFeatures.getAuth().currentUser?.email,
             "IdReq" to fieldValue
         )
-        salvar(data)
+        salvar(data, progressBar)
     }
 
     override fun uploadFotoProfile() {
@@ -47,11 +49,14 @@ class AddRequisitonRepository : IAddRepository, TimePickerDialog.OnTimeSetListen
     }
 
 
-    private fun salvar(data: HashMap<String, Any?>) {
+    private fun salvar(data: HashMap<String, Any?>,progressBar: ProgressBar) {
         fieldValue = FieldValue.increment(1).toString()
+        progressBar.visibility = View.VISIBLE
         FirebaseFeatures.getDatabase().collection(Texts.REQUISICAO_NAME)
             .document(FirebaseFeatures.getAuth().currentUser?.uid.toString())
-            .collection(Texts.LISTA_REQUISICAO_NAME).document(fieldValue).set(data)
+            .collection(Texts.LISTA_REQUISICAO_NAME).document(fieldValue).set(data).addOnSuccessListener {
+                progressBar.visibility = View.GONE
+            }
 
         FirebaseFeatures.getDatabase().collection(Texts.REQUISICAO_NAME)
             .document(FirebaseFeatures.getAuth().currentUser?.uid.toString())

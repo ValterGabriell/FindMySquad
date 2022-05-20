@@ -99,7 +99,7 @@ class ConfigNewUserRepository : IConfigRepository, TimePickerDialog.OnTimeSetLis
 
 
     private fun pegarOTextoDoEditTextNicknameEPorComoNumeroDoUsuario(et: EditText): String {
-        numero = et.text.toString()
+        numero = "55"+ et.text.toString()
         return numero
     }
 

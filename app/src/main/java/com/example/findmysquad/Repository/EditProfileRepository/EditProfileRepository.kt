@@ -4,6 +4,7 @@ import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.view.View
 import android.widget.*
 import androidx.core.view.children
 import com.example.findmysquad.Model.ModelRequisicoes
@@ -15,10 +16,12 @@ import com.example.findmysquad.View.TelaPrincipalActivity
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -35,7 +38,8 @@ class EditProfileRepository : IEditProfileRepository, TimePickerDialog.OnTimeSet
     override suspend fun recuperarDadosUsuario(
         editTextNickname: EditText,
         editTextEmail: EditText,
-        img: ImageView
+        img: ImageView,
+        progressBar: ProgressBar
     ) {
         val email = auth?.email.toString()
         val nickname = auth?.displayName.toString()
@@ -44,8 +48,18 @@ class EditProfileRepository : IEditProfileRepository, TimePickerDialog.OnTimeSet
         editTextEmail.setText(email)
         editTextNickname.setText(nickname)
         CoroutineScope(Dispatchers.Main).launch {
-            Picasso.get().load(urlFoto).into(img)
+            Picasso.get().load(urlFoto).into(img, object : Callback{
+                override fun onSuccess() {
+                    progressBar.visibility = View.GONE
+                }
+
+                override fun onError(e: Exception?) {
+                    progressBar.visibility = View.GONE
+                }
+            })
         }
+
+
     }
 
     override fun baixaAFotoDoStorageAtualizaNoPerfilENoBancoDeDados() {
@@ -80,10 +94,6 @@ class EditProfileRepository : IEditProfileRepository, TimePickerDialog.OnTimeSet
         FirebaseFeatures.getAuth().currentUser?.delete()
         FirebaseFeatures.getDatabase().collection(Texts.REQUISICAO_NAME)
             .document(auth?.uid.toString()).delete()
-    }
-
-    override fun abrirOTimerPickerEConfigurarAHora(context: Context) {
-        //timerDate = Methods.configTimerPicker(context)
     }
 
     private fun pegarOTextoDoEditTextNicknameEPorComoNickDoUsuario(et: EditText): String {
