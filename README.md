@@ -1,27 +1,31 @@
 # FindMySquad
 <h2>Inicio</h2>
-  -O usuário poderá criar até 5 perfis para sua conta<br />
-  -Para a gravação dos dados dos perfis utilizei o banco de dados internos do Android com auxilio da bilioteca Room<br />
-  -Ao criar o perfil, o usuário poderá ter acesso a todos os filmes que estão dispostos na API do The Movie Database<br />
-  -A requisição a essa API foi feita através da biblioteca de requisições Web Retrofit.<br />
-  -O usuário, ao clicar em um determinado título, poderá além de adicionar ele a uma lista de filmes própria, assistir ao trailer do mesmo.<br />
-  -Para isso, ele será redirecionado ao aplicativo do Youtube.<br />
+  -No app, o usuário consegue criar e logar uma conta, autenticada usando o serviço do Firebase Authentication. 
+  Ao finalizar o formulário de cadastro, o usuário irá ser redirecionado à tela principal, na qual poderá criar uma requisição de jogo, onde colocará o jogo, a plataforma e o horário que deseja jogar. Feito isso, ficará a mostra para todos os outros usuários, que poderão entrar em contato através do link para whatsapp.<br/>
+  -Há crud tanto para o perfil do usuário quanto para as requisições.<br />
   -MVVM foi utilizado em todo projeto, buscando seguir os principios SOLID.<br />
-  
-<h3>Algumas observações</h3>
--Nem todos os filmes tem sinopse na distribuição da API.<br />
--Os filmes não tem classificação de faixa etária, por isso foi colocada de maneira estática.<br />
--Algumas funcionalidades como o botão shared e rate ainda serão configuradas<br />
 
 <h3>Tecnologias usadas</h3>
--Consumo da API do The MovieDatabase<br />
--Utilizado biblioteca Room<br />
+-Firebase Auth<br />
+-Firebase Firestore<br />
 -MVVM<br />
 -Solid</br>
--Retrofit<br>
+-Firebase Storage<br>
 -Injeção de dependencia com o Koin</br>
 
-<h1>Screenshots</h1>
- 
+<h3>Como usar</h3>
+-Git clone neste link:<br/>
+https://github.com/ValterGabriell/FindMySquad.git<br/>
+-Depois disso, basta abrir o arquivo no Android Studio e iniciar a aplicação.<br/>
 
-![2](https://user-images.githubusercontent.com/63808405/144665807-d551db95-df10-460f-a497-ce7897062af7.png)
+<h1>Screenshots</h1>
+<div align = "center">
+<img src="https://user-images.githubusercontent.com/63808405/170056159-f1c3efaf-1848-4255-b2ee-74ec5a69648f.jpeg" width = "250px">
+<img src="https://user-images.githubusercontent.com/63808405/170056180-61a38f43-d23f-4f02-a31b-fc56e7fe5568.jpeg" width = "250px">
+<img src="https://user-images.githubusercontent.com/63808405/170056181-1cd2f9a3-825c-49f0-8666-93c4d2c0bc42.jpeg" width = "250px">
+<img src="https://user-images.githubusercontent.com/63808405/170056184-28342d39-2ed4-46b7-93e4-219cdaed43cf.jpeg" width = "250px">
+<img src="https://user-images.githubusercontent.com/63808405/170056185-99070333-0146-482e-8ae5-27b99ccc0403.jpeg" width = "250px">
+<img src="https://user-images.githubusercontent.com/63808405/170056189-60791ba2-604c-457a-a9c4-9ef62d7e6fea.jpeg" width = "250px">
+<img src="https://user-images.githubusercontent.com/63808405/170056193-2222e0e3-200c-4dd1-be5f-78217823db29.jpeg" width = "250px">
+  </div>
+
