@@ -7,6 +7,7 @@ import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.findmysquad.Model.Objects.FirebaseFeatures
+import com.example.findmysquad.R
 import com.example.findmysquad.ViewModel.ConfigurarUserViewModel
 import com.example.findmysquad.databinding.ActivityConfigBinding
 import com.squareup.picasso.Picasso
@@ -27,7 +28,7 @@ class AddUserActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityConfigBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        Picasso.get().load(R.drawable.profile).into(binding.img)
 
 
 

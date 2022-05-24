@@ -3,6 +3,7 @@ package com.example.findmysquad.Model.Objects
 import android.app.TimePickerDialog
 import android.content.Context
 import android.inputmethodservice.InputMethodService
+import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
@@ -31,5 +32,7 @@ object Methods {
             TimePickerDialog(context, timePickerDialog, hora, minutes, true).show()
         }
     }
+
+
 
 }

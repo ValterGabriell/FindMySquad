@@ -1,7 +1,9 @@
 package com.example.findmysquad.View
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.findmysquad.ViewModel.CadastrarViewModel
@@ -23,6 +25,7 @@ class CadastrarActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         binding.btnCadastrar.setOnClickListener {
+            hideKeyboard(it)
             binding.progressBar3.visibility = View.VISIBLE
             cadastrarUsuário()
         }
@@ -36,7 +39,12 @@ class CadastrarActivity : AppCompatActivity() {
 
         if (email.isNotEmpty() && senha.isNotEmpty()) {
             CoroutineScope(Dispatchers.Main).launch {
-                viewModel.cadastrarUsuario(email, senha, this@CadastrarActivity, binding.progressBar3)
+                viewModel.cadastrarUsuario(
+                    email,
+                    senha,
+                    this@CadastrarActivity,
+                    binding.progressBar3
+                )
             }
         } else {
             CoroutineScope(Dispatchers.Main).launch {
@@ -48,4 +56,10 @@ class CadastrarActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun hideKeyboard(view: View) {
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
 }
