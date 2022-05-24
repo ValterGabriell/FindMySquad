@@ -20,6 +20,7 @@ class AddUserActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityConfigBinding
     private val model by inject<ConfigurarUserViewModel>()
+    private var profileFoto: String = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +49,8 @@ class AddUserActivity : AppCompatActivity() {
                     binding.etNumber,
                     binding.chipGroup,
                     binding.chipGroup2,
-                    this@AddUserActivity
+                    this@AddUserActivity,
+                    profileFoto
                 )
             }
             CoroutineScope(Dispatchers.IO).launch {
@@ -65,6 +67,7 @@ class AddUserActivity : AppCompatActivity() {
             ActivityResultCallback {
                 Picasso.get().load(it).into(binding.img)
                 enviarFotoParaOStorage(FirebaseFeatures.getAuth().currentUser?.uid.toString(), it!!)
+                profileFoto = it.toString()
             }
         )
         binding.img.setOnClickListener {
@@ -72,16 +75,23 @@ class AddUserActivity : AppCompatActivity() {
         }
     }
 
-    private fun enviarFotoParaOStorage(filename: String, uri: Uri) =
-        CoroutineScope(Dispatchers.IO).launch {
-            try {
-                model.enviarFotoParaOStorage(filename, uri)
-            } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(this@AddUserActivity, e.message, Toast.LENGTH_LONG).show()
+    private fun enviarFotoParaOStorage(filename: String, uri: Uri) {
+        if (uri.toString().isNotEmpty() and filename.isNotEmpty()) {
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    model.enviarFotoParaOStorage(filename, uri)
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(this@AddUserActivity, e.message, Toast.LENGTH_LONG).show()
+                    }
                 }
             }
+        } else {
+            Toast.makeText(this, "Selecione uma foto", Toast.LENGTH_LONG).show()
         }
+
+    }
+
 
     override fun onBackPressed() {
 

@@ -25,6 +25,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
+
         <include layout="@layout/layout_main_adapter_shimmer" />
     </com.facebook.shimmer.ShimmerFrameLayout>
 
@@ -53,5 +54,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/layout_main_adapter" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

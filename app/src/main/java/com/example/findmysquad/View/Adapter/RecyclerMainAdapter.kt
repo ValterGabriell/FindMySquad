@@ -22,6 +22,7 @@ class RecyclerMainAdapter(private val list: ArrayList<ModelRequisicoes>) :
             itemView.findViewById<TextView>(R.id.txtUsername).text = modelRequisicoes.user
             val img = itemView.findViewById<ImageView>(R.id.imageView2)
             Picasso.get().load(modelRequisicoes.photoUri).into(img)
+
         }
 
     }

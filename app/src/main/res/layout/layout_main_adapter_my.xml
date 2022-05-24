@@ -22,13 +22,14 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="4dp"
+            android:src="@drawable/profile"
             app:civ_border_color="@color/azul5"
             app:civ_border_width="1dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
+            android:layout_marginLeft="16dp"
             android:orientation="vertical"
             android:padding="4dp">
 
@@ -73,14 +74,6 @@
                 android:textSize="14sp" />
 
         </LinearLayout>
-
-        <ImageView
-            android:id="@+id/imgWhatsapp"
-            android:layout_width="65dp"
-            android:layout_height="45dp"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="8dp"
-            app:srcCompat="@drawable/whatsapp_icon" />
 
     </LinearLayout>
 

@@ -15,9 +15,11 @@ class ConfigurarUserViewModel(private val configRepository: ConfigNewUserReposit
         etNumber:EditText,
         chipGroup: ChipGroup,
         chipGroup2: ChipGroup,
-        context: Context
+        context: Context,
+        profileFoto: String
     ) {
-        configRepository.validateForm(et,etNumber, chipGroup, chipGroup2, context)
+
+        configRepository.validateForm(et,etNumber, chipGroup, chipGroup2, context, profileFoto)
     }
 
     suspend fun abrirOTimerPickerEConfigurarAHora(context: Context,button: Button){

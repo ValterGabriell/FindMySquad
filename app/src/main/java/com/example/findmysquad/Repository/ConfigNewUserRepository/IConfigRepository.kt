@@ -11,7 +11,8 @@ interface IConfigRepository {
         etNumero:EditText,
         chipGroup: ChipGroup,
         chipGroup2: ChipGroup,
-        context: Context
+        context: Context,
+        profileFoto: String
     )
 
     fun uparAImagemEscolhidaParaOBancoDeDados(filename: String, uri: Uri)

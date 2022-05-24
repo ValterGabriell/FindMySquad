@@ -7,11 +7,13 @@ import com.example.findmysquad.Model.ModelRequisicoes
 import com.example.findmysquad.Model.Objects.FirebaseFeatures
 import com.example.findmysquad.Model.Objects.Texts
 import com.example.findmysquad.View.LogarActivity
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class TelaPrincipalRepository : ITelaPrincipalRepository {
 
     override suspend fun signOut(context: Context) {
-        FirebaseFeatures.getAuth().signOut()
+        Firebase.auth.signOut()
         context.startActivity(Intent(context, LogarActivity::class.java))
     }
 

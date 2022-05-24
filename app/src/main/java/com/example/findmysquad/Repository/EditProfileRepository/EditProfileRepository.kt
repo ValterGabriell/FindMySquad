@@ -6,14 +6,11 @@ import android.content.Intent
 import android.net.Uri
 import android.view.View
 import android.widget.*
-import androidx.core.view.children
-import com.example.findmysquad.Model.ModelRequisicoes
 import com.example.findmysquad.Model.Objects.FirebaseFeatures
 import com.example.findmysquad.Model.Objects.Methods
 import com.example.findmysquad.Model.Objects.Texts
 import com.example.findmysquad.View.LogarActivity
 import com.example.findmysquad.View.TelaPrincipalActivity
-import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.squareup.picasso.Callback
@@ -21,9 +18,6 @@ import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.lang.Exception
-import java.util.*
-import kotlin.collections.HashMap
 
 class EditProfileRepository : IEditProfileRepository, TimePickerDialog.OnTimeSetListener {
 
@@ -43,12 +37,12 @@ class EditProfileRepository : IEditProfileRepository, TimePickerDialog.OnTimeSet
     ) {
         val email = auth?.email.toString()
         val nickname = auth?.displayName.toString()
-        val urlFoto = auth?.photoUrl
+        val urlFoto = auth?.photoUrl.toString()
 
         editTextEmail.setText(email)
         editTextNickname.setText(nickname)
         CoroutineScope(Dispatchers.Main).launch {
-            Picasso.get().load(urlFoto).into(img, object : Callback{
+            Picasso.get().load(urlFoto).into(img, object : Callback {
                 override fun onSuccess() {
                     progressBar.visibility = View.GONE
                 }
@@ -59,8 +53,8 @@ class EditProfileRepository : IEditProfileRepository, TimePickerDialog.OnTimeSet
             })
         }
 
-
     }
+
 
     override fun baixaAFotoDoStorageAtualizaNoPerfilENoBancoDeDados() {
         FirebaseFeatures.getStorage()
@@ -103,7 +97,7 @@ class EditProfileRepository : IEditProfileRepository, TimePickerDialog.OnTimeSet
 
     override suspend fun atualizarPerfil(
         et: EditText,
-        etEmail : EditText,
+        etEmail: EditText,
         chipGroup: ChipGroup,
         chipGroup2: ChipGroup,
         context: Context
@@ -116,7 +110,7 @@ class EditProfileRepository : IEditProfileRepository, TimePickerDialog.OnTimeSet
                 "lista-plataformas" to Methods.filterChip(chipGroup2),
                 "userId" to auth?.uid.toString(),
                 "email" to auth?.email.toString(),
-                "photo" to ""
+                "photo" to auth?.photoUrl.toString()
             )
             /**
              * upar perfil do usuario
@@ -126,7 +120,11 @@ class EditProfileRepository : IEditProfileRepository, TimePickerDialog.OnTimeSet
         }
     }
 
-    private fun atualizarColecaoNoFirebase(et: EditText, context: Context, profileMap: HashMap<String, Any>) {
+    private fun atualizarColecaoNoFirebase(
+        et: EditText,
+        context: Context,
+        profileMap: HashMap<String, Any>
+    ) {
         FirebaseFeatures.getDatabase().collection("User")
             .document(FirebaseFeatures.getAuth().currentUser?.uid.toString()).update(profileMap)
             .addOnSuccessListener {
@@ -146,7 +144,7 @@ class EditProfileRepository : IEditProfileRepository, TimePickerDialog.OnTimeSet
     }
 
     fun clock(context: Context, button: Button) {
-        Methods.clock(context, button,this)
+        Methods.clock(context, button, this)
     }
 
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {

@@ -28,7 +28,7 @@ class MyReqRep : IMyReqRep {
                     horario = documents.documents[ids].get("Horário").toString()
                     game = documents.documents[ids].data?.get("Jogo") as ArrayList<Int>
                     plataforma = documents.documents[ids].data?.get("Plataforma") as ArrayList<Int>
-                    photoUri = documents.documents[ids].get("PhotoUri").toString()
+                    photoUri = auth?.photoUrl.toString()
                     idField = documents.documents[ids].get("IdReq").toString()
                     listaModel.add(model)
                 }

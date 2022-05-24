@@ -1,10 +1,13 @@
 package com.example.findmysquad.View
 
+import android.content.Context
 import android.content.Intent
+import android.inputmethodservice.InputMethodService
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.findmysquad.R
 import com.example.findmysquad.ViewModel.LogarViewModel
 import com.example.findmysquad.databinding.ActivityLogarBinding

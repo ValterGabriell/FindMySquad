@@ -1,10 +1,8 @@
 package com.example.findmysquad.View
 
-import android.app.TimePickerDialog
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.TimePicker
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -17,7 +15,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.koin.android.ext.android.inject
 
-class EditProfileActivity : AppCompatActivity(){
+class EditProfileActivity : AppCompatActivity() {
     private lateinit var binding: ActivityEditProfileBinding
     private val model by inject<EditProfileViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +31,12 @@ class EditProfileActivity : AppCompatActivity(){
 
         CoroutineScope(Dispatchers.IO).launch {
             binding.progressBar2.visibility = View.VISIBLE
-            model.recuperarDadosUsuario(binding.etNick, binding.etEmailProfile, binding.img, binding.progressBar2)
+            model.recuperarDadosUsuario(
+                binding.etNick,
+                binding.etEmailProfile,
+                binding.img,
+                binding.progressBar2
+            )
         }
 
         CoroutineScope(Dispatchers.Main).launch {
@@ -50,6 +53,10 @@ class EditProfileActivity : AppCompatActivity(){
                     this@EditProfileActivity
                 )
             }
+
+            CoroutineScope(Dispatchers.IO).launch {
+                model.receberFotoEPorNoBancoDeDados()
+            }
         }
 
 
@@ -63,15 +70,6 @@ class EditProfileActivity : AppCompatActivity(){
         uparImageParaDB()
 
     }
-
-    override fun onStop() {
-        super.onStop()
-        CoroutineScope(Dispatchers.IO).launch {
-            model.receberFotoEPorNoBancoDeDados()
-        }
-
-    }
-
     private fun uparImageParaDB() {
         val getImageFromGalley = registerForActivityResult(
             ActivityResultContracts.GetContent()

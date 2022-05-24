@@ -30,6 +30,8 @@ class TelaPrincipalActivity : AppCompatActivity() {
         binding = ActivityTelaPrincipalBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
         binding.recyclerMain.visibility = View.GONE
         binding.shimmer.apply {
             visibility = View.VISIBLE
@@ -41,7 +43,6 @@ class TelaPrincipalActivity : AppCompatActivity() {
             title = "Requisições"
         }
         btnFab()
-
     }
 
     override fun onStart() {
@@ -52,13 +53,11 @@ class TelaPrincipalActivity : AppCompatActivity() {
     private fun configRecycler() {
         CoroutineScope(Dispatchers.IO).launch {
             model.configurarDados(FirebaseFeatures.getAuth().currentUser?.uid.toString())
-
         }
         CoroutineScope(Dispatchers.Main).launch {
             model.listaRequisicoes.observe(this@TelaPrincipalActivity) {
                 listaRequisicoesMain = it
                 listaRequisicoesMain.reverse()
-
                 binding.shimmer.apply {
                     this.stopShimmerAnimation()
                     visibility = View.GONE
@@ -94,7 +93,6 @@ class TelaPrincipalActivity : AppCompatActivity() {
             R.id.id_logout -> {
                 CoroutineScope(Dispatchers.Default).launch {
                     model.signOut(this@TelaPrincipalActivity)
-                    startActivity(Intent(this@TelaPrincipalActivity, LogarActivity::class.java))
                 }
             }
         }
